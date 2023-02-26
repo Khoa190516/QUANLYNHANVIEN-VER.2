@@ -1,13 +1,3 @@
-<!---
-
-
-
-              FILE NÀY LÀ FILE CŨ NHÉ  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
--->
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -122,9 +112,9 @@
 </head>
 
 <body onload="time()">
-    <script>
+    <!-- <script>
         swal("Xin Chào Admin", "Chúc Bạn 1 Ngày Tốt Lành Nhé", "");
-    </script>
+    </script> -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -139,12 +129,12 @@
                     <li ><a href="custommer.html" data-toggle="tooltip" data-placement="bottom"
                             title="NHÂN VIÊN">NHÂN VIÊN</a></li>
                     <li ><a href="/nhaxe.html" data-toggle="tooltip" data-placement="bottom" title="ĐIỂM DANH">QUẢN LÝ NHÀ XE</a></li>
-                    <li class="active"><a href="/thongke.html" data-toggle="tooltip" data-placement="bottom" title="TIỀN LƯƠNG">BẢNG THỐNG KÊ</a></li>
+                    <li class="active"><a href="/thongke.html" data-toggle="tooltip" data-placement="bottom" title="XE">XE</a></li>
                     <li><a href="chuyendi.html" data-toggle="tooltip" data-placement="bottom" title="LỊCH CÔNG TÁC">QUẢN LÝ CHUYẾN ĐI</a>
                     </li>
-                    <li><a href="#contact" data-toggle="tooltip" data-placement="bottom" title="BÁO CÁO">BÁO CÁO</a>
+                    <li><a href="#contact" data-toggle="tooltip" data-placement="bottom" title="ĐƠN HÀNG">ĐƠN HÀNG</a>
                     </li>
-                    <li><a href="#tour" data-toggle="tooltip" data-placement="bottom" title="SỰ KIỆN">SỰ KIỆN</a></li>
+                    <li><a href="#tour" data-toggle="tooltip" data-placement="bottom" title="PHẢN HỒI">PHẢN HỒI</a></li>
                     <li>
                         <a href="#" data-toggle="tooltip" data-placement="bottom" title="TÀI KHOẢN"><b>Tài Khoản</b>
                             <span class="caret"></span>
@@ -187,16 +177,16 @@
         <table class="table table-bordered" id="myTable">
             <thead>
                 <tr class="ex">
-                    <th width="auto">Tên Nhà Xe</th>
-                    <th width="auto">Địa chỉ</th>
-                    <th>Số Điện Thoại</th>
-                    <th>Email liên hệ</th>
-                    <th>Tổng Doanh thu</th>
+                    <th width="auto">Biển số xe</th>
+                    <th width="auto">Hình ảnh</th>
+                    <th>Số ghế</th>
+                    <th>Hiện có sẵn</th>
+                    <th>Mô tả</th>
                     <th width="5px; !important">Tính Năng</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
+            <tbody id="table-bus">
+                <!-- <tr>
                     <td>Sao Mai</td>
                     <td> Lô E2a-7, Đường D1, Đ. D1, Long Thạnh Mỹ, Thành Phố Thủ Đức, Thành phố Hồ Chí Minh 700000</td>
                     <td>0123456789</td>
@@ -276,7 +266,7 @@
                         <a class="delete" title="Xóa" data-toggle="tooltip"><i class="fa fa-trash-o"
                                 aria-hidden="true"></i></a>
                     </td>
-                </tr>
+                </tr> -->
                 
             </tbody>
         </table>
@@ -344,9 +334,9 @@
                 <i class="fab fa-youtube"></i>
                 <i class="fab fa-google"></i>
             </div>
-            <div class="col-lg-12">
+            <!-- <div class="col-lg-12">
                 2022 CopyRight Phan mem quan ly | Design by <a href="#">team</a>
-            </div>
+            </div> -->
         </div>
     </div>
     <script src="jquery.min.js"></script>
@@ -495,6 +485,37 @@
                 swal("Thành Công!", "Bạn Đã Xóa Thành Công", "success");
                 $(".add-new").removeAttr("disabled");
             });
+
+            var busUrl = "https://localhost:44305/api/v1/bus";
+            fetch(busUrl).then(response => {
+                return response.json();
+            }).then(data => {
+                //alert(data.length);
+                console.log(data.length);
+                $("#table-bus").empty();
+                data.forEach(element => {
+                    var row = $('<tr>'+
+                    '<td id="name'+element.id+'">'+element.licensePlate+'</td>'+
+                    '<td id="address'+element.id+'"><img width="100%" height="100%" src='+element.images +'></td> '+
+                    '<td id="email'+element.id+'">'+element.seatUnit+'</td> '+
+                    '<td id="phone'+element.id+'">'+element.isAvailable+'</td> '+
+                    '<td id="role'+element.id+'">'+element.description+'</td> '+
+                    '<td> '+
+                        '<a class="add" title="Lưu Lại" data-toggle="tooltip"><i class="fa fa-floppy-o" '+
+                                'aria-hidden="true"></i></a> '+
+                        '<a class="edit" title="Sửa" data-toggle="tooltip"><i class="fa fa-pencil" '+
+                                'aria-hidden="true"></i></a> '+
+                        '<a class="delete" title="Xóa" data-toggle="tooltip"><i  class="fa fa-trash-o" '+
+                                'aria-hidden="true"></i></a> '+
+                    '</td> '+
+                    '</tr>'
+                );
+                    $("#table-bus").append(row)            
+                });
+                
+            }).catch(err => {
+                console.log(error);
+            })
         });
         //Not use
         jQuery(function () {

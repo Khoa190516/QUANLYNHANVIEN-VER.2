@@ -1,13 +1,3 @@
-<!---
-
-
-
-              FILE NÀY LÀ FILE CŨ NHÉ  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
--->
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -122,9 +112,9 @@
 </head>
 
 <body onload="time()">
-    <script>
+    <!-- <script>
         swal("Xin Chào Admin", "Chúc Bạn 1 Ngày Tốt Lành Nhé", "");
-    </script>
+    </script> -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -139,12 +129,12 @@
                     <li class="active"><a href="#home" data-toggle="tooltip" data-placement="bottom"
                             title="NHÂN VIÊN">NHÂN VIÊN</a></li>
                     <li ><a href="/nhaxe.html" data-toggle="tooltip" data-placement="bottom" title="ĐIỂM DANH">QUẢN LÝ NHÀ XE</a></li>
-                    <li><a href="/thongke.html" data-toggle="tooltip" data-placement="bottom" title="TIỀN LƯƠNG">BẢNG THỐNG KÊ</a></li>
+                    <li><a href="/thongke.html" data-toggle="tooltip" data-placement="bottom" title="XE">XE</a></li>
                     <li><a href="chuyendi.html" data-toggle="tooltip" data-placement="bottom" title="LỊCH CÔNG TÁC">QUẢN LÝ CHUYẾN ĐI</a>
                     </li>
-                    <li><a href="#contact" data-toggle="tooltip" data-placement="bottom" title="BÁO CÁO">BÁO CÁO</a>
+                    <li><a href="#contact" data-toggle="tooltip" data-placement="bottom" title="ĐƠN HÀNG">ĐƠN HÀNG</a>
                     </li>
-                    <li><a href="#tour" data-toggle="tooltip" data-placement="bottom" title="SỰ KIỆN">SỰ KIỆN</a></li>
+                    <li><a href="#tour" data-toggle="tooltip" data-placement="bottom" title="PHẢN HỒI">PHẢN HỒI</a></li>
                     <li>
                         <a href="#" data-toggle="tooltip" data-placement="bottom" title="TÀI KHOẢN"><b>Tài Khoản</b>
                             <span class="caret"></span>
@@ -188,21 +178,21 @@
             <thead>
                 <tr class="ex">
                     <th width="auto">Tên Nhân Viên</th>
-                    <th width="auto">Giới Tính</th>
-                    <th>Ngày Sinh</th>
-                    <th>Địa Chỉ</th>
-                    <th>Chức Vụ</th>
+                    <th width="auto">Địa Chỉ</th>
+                    <th>Email</th>
+                    <th>Điện Thoại</th>
+                    <th>Role</th>
                     <th width="5px; !important">Tính Năng</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="body-staff">
                 <tr>
-                    <td>Võ Trường</td>
-                    <td>Nam</td>
-                    <td>15/03/2000</td>
-                    <td>Thông Tin Bảo Mật</td>
+                    <td class="name">Minh</td>
+                    <td class="address">Nam</td>
+                    <td class="email">15/03/2000</td>
+                    <td class="phone">Thông Tin Bảo Mật</td>
 
-                    <td>Admin</td>
+                    <td class="role">Admin</td>
                     <td>
                         <a class="add" title="Lưu Lại" data-toggle="tooltip"><i class="fa fa-floppy-o"
                                 aria-hidden="true"></i></a>
@@ -212,7 +202,7 @@
                                 aria-hidden="true"></i></a>
                     </td>
                 </tr>
-                <tr>
+                <!-- <tr>
                     <td>Trần Khả Ái</td>
                     <td>Nữ</td>
                     <td>12/02/1999</td>
@@ -350,7 +340,7 @@
                         <a class="delete" title="Xóa" data-toggle="tooltip"><i class="fa fa-trash-o"
                                 aria-hidden="true"></i></a>
                     </td>
-                </tr>
+                </tr> -->
             </tbody>
         </table>
         <div id="pageNavPosition" class="text-right"></div>
@@ -369,9 +359,6 @@
                 <i class="fab fa-instagram"></i>
                 <i class="fab fa-youtube"></i>
                 <i class="fab fa-google"></i>
-            </div>
-            <div class="col-lg-12">
-                2019 CopyRight Phan mem quan ly | Design by <a href="#">TruongBinIT</a>
             </div>
         </div>
     </div>
@@ -521,6 +508,36 @@
                 swal("Thành Công!", "Bạn Đã Xóa Thành Công", "success");
                 $(".add-new").removeAttr("disabled");
             });
+            var accountUrl = "https://localhost:44305/api/v1/accounts";
+            fetch(accountUrl).then(response => {
+                return response.json();
+            }).then(data => {
+                //alert(data.length);
+                console.log(data);
+                $("#body-staff").empty();
+                data.forEach(element => {
+                    var row = $('<tr>'+
+                    '<td id="name'+element.id+'">'+element.username+'</td>'+
+                    '<td id="address'+element.id+'">'+element.address+'</td> '+
+                    '<td id="email'+element.id+'">'+element.email+'</td> '+
+                    '<td id="phone'+element.id+'">'+element.phone+'</td> '+
+                    '<td id="role'+element.id+'">'+element.roleName+'</td> '+
+                    '<td> '+
+                        '<a class="add" title="Lưu Lại" data-toggle="tooltip"><i class="fa fa-floppy-o" '+
+                                'aria-hidden="true"></i></a> '+
+                        '<a class="edit" title="Sửa" data-toggle="tooltip"><i class="fa fa-pencil" '+
+                                'aria-hidden="true"></i></a> '+
+                        '<a class="delete" title="Xóa" data-toggle="tooltip"><i  class="fa fa-trash-o" '+
+                                'aria-hidden="true"></i></a> '+
+                    '</td> '+
+                    '</tr>'
+                );
+                    $("#body-staff").append(row)            
+                });
+                
+            }).catch(err => {
+                console.log(error);
+            })
         });
         //Not use
         jQuery(function () {
