@@ -122,15 +122,18 @@
                     <i class="fas fa-bars"></i>
                 </button>
                 <a class="navbar-brand" href="#"><i class="fa fa-user-circle" aria-hidden="true"></i> QUẢN
-                    LÝ NHÂN VIÊN</a>
+                    LÝ NHÀ XE</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li ><a href="custommer.html" data-toggle="tooltip" data-placement="bottom"
-                            title="NHÂN VIÊN">NHÂN VIÊN</a></li>
-                    <li ><a href="/nhaxe.html" data-toggle="tooltip" data-placement="bottom" title="ĐIỂM DANH">QUẢN LÝ NHÀ XE</a></li>
-                    <li ><a href="/thongke.html" data-toggle="tooltip" data-placement="bottom" title="XE">XE</a></li>
-                    <li class="active"><a href="chuyendi.html" data-toggle="tooltip" data-placement="bottom" title="LỊCH CÔNG TÁC">QUẢN LÝ CHUYẾN ĐI</a>
+                    <li><a href="custommer.html" data-toggle="tooltip" data-placement="bottom" title="NHÂN VIÊN">NHÂN
+                            VIÊN</a></li>
+                    <li><a href="/nhaxe.html" data-toggle="tooltip" data-placement="bottom" title="ĐIỂM DANH">QUẢN LÝ
+                            NHÀ XE</a></li>
+                    <li class="active"><a href="/thongke.html" data-toggle="tooltip" data-placement="bottom"
+                            title="XE">XE</a></li>
+                    <li><a href="chuyendi.html" data-toggle="tooltip" data-placement="bottom" title="CHUYẾN ĐI">QUẢN
+                            LÝ CHUYẾN ĐI</a>
                     </li>
                     <li><a href="/donhang.html" data-toggle="tooltip" data-placement="bottom" title="ĐƠN HÀNG">ĐƠN HÀNG</a>
                     </li>
@@ -152,8 +155,8 @@
     <div class="container-fluid al">
         <div id="clock"></div>
         <Br>
-        <p class="timkiemnhanvien"><b>TÌM KIẾM CHUYẾN ĐI:</b></p><Br><Br>
-        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Nhập điểm xuất phát...">
+        <p class="timkiemnhanvien"><b>TÌM KIẾM ĐƠN HÀNG:</b></p><Br><Br>
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Nhập email khách hàng.">
         <i class="fa fa-search" aria-hidden="true"></i>
 
         <form action="">
@@ -177,22 +180,23 @@
         <table class="table table-bordered" id="myTable">
             <thead>
                 <tr class="ex">
-                    <th width="auto">Hình ảnh</th>
-                    <th width="auto">Điểm xuất phát </th>
-                    <th>Điểm đến </th>
-                    <th> Thời gian khởi hành</th>
-                    <th>Số ghế còn lại</th>
+                    <th width="auto">Email</th>
+                    <th width="auto">Số điện thoại</th>
+                    <th>Mã chuyển tiền</th>
+                    <th>Các ghế đã đặt</th>
+                    <th>Tổng tiền</th>
+                    <th>Trạng thái</th>
                     <th width="5px; !important">Tính Năng</th>
                 </tr>
             </thead>
-            <tbody id="table-trip">
+            <tbody id="table-bus">
                 <!-- <tr>
                     <td>Sao Mai</td>
-                    <td> Sài Gòn</td>
-                    <td>Đà Lạt</td>
-                    <td>13:00</td>
+                    <td> Lô E2a-7, Đường D1, Đ. D1, Long Thạnh Mỹ, Thành Phố Thủ Đức, Thành phố Hồ Chí Minh 700000</td>
+                    <td>0123456789</td>
+                    <td>saomai@gmail.com</td>
 
-                    <td ><span class="badge bg-success">Đã khởi hành</span></td>
+                    <td>14.000.000</td>
                     <td>
                         <a class="add" title="Lưu Lại" data-toggle="tooltip"><i class="fa fa-floppy-o"
                                 aria-hidden="true"></i></a>
@@ -204,11 +208,11 @@
                 </tr>
                 <tr>
                     <td>Sao Việt</td>
-                    <td>Sài Gòn </td>
-                    <td>Nha Trang</td>
-                    <td>15:00</td>
-                     
-                    <td ><span class="badge bg-success">chưa khởi hành</span></td>
+                    <td> Lô E2a-7, Đường D1, Đ. D1, Long Thạnh Mỹ, Thành Phố Thủ Đức, Thành phố Hồ Chí Minh 700000</td>
+                    <td>0123456789</td>
+                    <td>saoviet@gmail.com</td>
+
+                    <td>5.000.000</td>
                     <td>
                         <a class="add" title="Lưu Lại" data-toggle="tooltip"><i class="fa fa-floppy-o"
                                 aria-hidden="true"></i></a>
@@ -220,11 +224,11 @@
                 </tr>
                 <tr>
                     <td>SAPA Group</td>
-                    <td> Sài Gòn </td>
-                    <td>Vũng tàu </td>
-                    <td>16:00 ngày 23/2/2023</td>
+                    <td> Lô E2a-7, Đường D1, Đ. D1, Long Thạnh Mỹ, Thành Phố Thủ Đức, Thành phố Hồ Chí Minh 700000</td>
+                    <td>0123456789</td>
+                    <td>Sapagroup@gmail.com</td>
 
-                    <td ><span class="badge bg-success">chưa khởi hành</span></td>
+                    <td>4.000.000</td>
                     <td>
                         <a class="add" title="Lưu Lại" data-toggle="tooltip"><i class="fa fa-floppy-o"
                                 aria-hidden="true"></i></a>
@@ -239,11 +243,25 @@
                 
                 <tr>
                     <td>Phương Trang</td>
-                    <td> Sài Gòn</td>
-                    <td> Buôn Ma Thuột</td>
-                    <td>	16:00 ngày 26/2/2023</td>
-                    
-                    <td ><span class="badge bg-success">chưa khởi hành</span></td>
+                    <td> Lô E2a-7, Đường D1, Đ. D1, Long Thạnh Mỹ, Thành Phố Thủ Đức, Thành phố Hồ Chí Minh 700000</td>
+                    <td>0123456789</td>
+                    <td>phuongtrang@gmail.com</td>
+                    <td>3.000.000</td>
+                    <td>
+                        <a class="add" title="Lưu Lại" data-toggle="tooltip"><i class="fa fa-floppy-o"
+                                aria-hidden="true"></i></a>
+                        <a class="edit" title="Sửa" data-toggle="tooltip"><i class="fa fa-pencil"
+                                aria-hidden="true"></i></a>
+                        <a class="delete" title="Xóa" data-toggle="tooltip"><i class="fa fa-trash-o"
+                                aria-hidden="true"></i></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Phuong Nam</td>
+                    <td> Lô E2a-7, Đường D1, Đ. D1, Long Thạnh Mỹ, Thành Phố Thủ Đức, Thành phố Hồ Chí Minh 700000</td>
+                    <td>123456789</td>
+                    <td>phuongnam@gmail.com</td>
+                    <td>2.000.000</td>
                     <td>
                         <a class="add" title="Lưu Lại" data-toggle="tooltip"><i class="fa fa-floppy-o"
                                 aria-hidden="true"></i></a>
@@ -253,8 +271,7 @@
                                 aria-hidden="true"></i></a>
                     </td>
                 </tr> -->
-               
-                
+
             </tbody>
         </table>
         <div id="pageNavPosition" class="text-right"></div>
@@ -265,6 +282,55 @@
             pager.showPage(1);
         </script>
     </div>
+
+    <head>
+        <title>Sơ đồ thống kê</title>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </head>
+
+    <body>
+        <canvas id="myChart"></canvas>
+
+        <script>
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6'],
+                    datasets: [{
+                        label: 'Doanh thu ',
+                        data: [1200, 1800, 2200, 2000, 2400, 2800],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        </script>
+    </body>
     <hr class="hr1">
     <div class="container-fluid end">
         <div class="row text-center">
@@ -275,7 +341,7 @@
                 <i class="fab fa-google"></i>
             </div>
             <!-- <div class="col-lg-12">
-                2019 CopyRight Phan mem quan ly | Design by <a href="#">TruongBinIT</a>
+                2022 CopyRight Phan mem quan ly | Design by <a href="#">team</a>
             </div> -->
         </div>
     </div>
@@ -295,7 +361,11 @@
                     if (txtValue.toUpperCase().indexOf(filter) > -1) {
                         tr[i].style.display = "";
                     } else {
-                        tr[i].style.display = "none";  }}}}
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
         //Lọc bảng
         function sortTable() {
             var table, rows, switching, i, x, y, shouldSwitch;
@@ -369,7 +439,7 @@
                 $(this).attr("disabled", "disabled");
                 var index = $("table tbody tr:last-child").index();
                 var row = '<tr>' +
-                   
+
                     '<td><input type="text" class="form-control" name="gioitinh" id="gioitinh" placeholder="Nhập Tên"></td>' +
                     '<td><input type="text" class="form-control" name="gioitinh" id="gioitinh" placeholder="Nhập Giới Tính"></td>' +
                     '<td><input type="text" class="form-control" name="namsinh" id="namsinh" value="" placeholder="Nhập Ngày Sinh"></td>' +
@@ -426,37 +496,47 @@
                 $(".add-new").removeAttr("disabled");
             });
 
-            var tripUrl = "https://localhost:44305/api/v1/trip";
-            fetch(tripUrl).then(response => {
+            const token = localStorage.getItem('token');
+            console.log(token);
+
+            var busUrl = "https://localhost:44305/api/v1/payment/orders-by-company";
+            fetch(busUrl, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': "Bearer " + token
+                },
+            }).then(response => {
                 return response.json();
             }).then(data => {
                 //alert(data.length);
                 console.log(data.length);
-                $("#table-trip").empty();
+                $("#table-bus").empty();
                 data.forEach(element => {
-                    var row = $('<tr>'+
-                    '<td id="address'+element.id+'"><img width="100%" height="100%" src='+element.bus.images +'></td> '+
-                    '<td id="name'+element.id+'">'+element.departureName+'</td>'+
-                    '<td id="email'+element.id+'">'+element.destinationName+'</td> '+
-                    '<td id="phone'+element.id+'">'+element.departureDate+'</td> '+
-                    '<td id="role'+element.id+'">'+element.bus.seatsLeft+'</td> '+
-                    '<td> '+
-                        '<a class="add" title="Lưu Lại" data-toggle="tooltip"><i class="fa fa-floppy-o" '+
-                                'aria-hidden="true"></i></a> '+
-                        '<a class="edit" title="Sửa" data-toggle="tooltip"><i class="fa fa-pencil" '+
-                                'aria-hidden="true"></i></a> '+
-                        '<a class="delete" title="Xóa" data-toggle="tooltip"><i  class="fa fa-trash-o" '+
-                                'aria-hidden="true"></i></a> '+
-                    '</td> '+
-                    '</tr>'
-                );
-                    $("#table-trip").append(row)            
+                    var row = $('<tr>' +
+                        '<td id="name' + element.id + '">' + element.email + '</td>'+
+                        '<td id="email' + element.id + '">' + element.phone + '</td> ' +
+                        '<td id="phone' + element.id + '">' + element.code + '</td> ' +
+                        '<td id="role' + element.id + '">' + element.seatsName + '</td> ' +
+                        '<td id="email' + element.id + '">' + element.amount.toLocaleString() + ' VND</td> ' +
+                        '<td id="email' + element.id + '">' + element.status.toUpperCase() + ' </td> ' +
+                        '<td> ' +
+                        '<a class="add" title="Lưu Lại" data-toggle="tooltip"><i class="fa fa-floppy-o" ' +
+                        'aria-hidden="true"></i></a> ' +
+                        '<a class="edit" title="Sửa" data-toggle="tooltip"><i class="fa fa-pencil" ' +
+                        'aria-hidden="true"></i></a> ' +
+                        '<a class="delete" title="Xóa" data-toggle="tooltip"><i  class="fa fa-trash-o" ' +
+                        'aria-hidden="true"></i></a> ' +
+                        '</td> ' +
+                        '</tr>'
+                    );
+                    $("#table-bus").append(row)
                 });
-                
+
             }).catch(err => {
                 console.log(error);
             })
-
         });
         //Not use
         jQuery(function () {
@@ -470,73 +550,122 @@
         });
     </script>
 
-<script>
+    <script>
 
-    function readURL(input, thumbimage) {
-      if (input.files && input.files[0]) { //Sử dụng  cho Firefox - chrome
-        var reader = new FileReader();
-        reader.onload = function (e) {
-          $("#thumbimage").attr('src', e.target.result);
+        function readURL(input, thumbimage) {
+            if (input.files && input.files[0]) { //Sử dụng  cho Firefox - chrome
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $("#thumbimage").attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+            else { // Sử dụng cho IE
+                $("#thumbimage").attr('src', input.value);
+
+            }
+            $("#thumbimage").show();
+            $('.filename').text($("#uploadfile").val());
+            $('.Choicefile').css('background', '#14142B');
+            $('.Choicefile').css('cursor', 'default');
+            $(".removeimg").show();
+            $(".Choicefile").unbind('click');
+
         }
-        reader.readAsDataURL(input.files[0]);
-      }
-      else { // Sử dụng cho IE
-        $("#thumbimage").attr('src', input.value);
+        $(document).ready(function () {
+            $(".Choicefile").bind('click', function () {
+                $("#uploadfile").click();
 
-      }
-      $("#thumbimage").show();
-      $('.filename').text($("#uploadfile").val());
-      $('.Choicefile').css('background', '#14142B');
-      $('.Choicefile').css('cursor', 'default');
-      $(".removeimg").show();
-      $(".Choicefile").unbind('click');
+            });
+            $(".removeimg").click(function () {
+                $("#thumbimage").attr('src', '').hide();
+                $("#myfileupload").html('<input type="file" id="uploadfile"  onchange="readURL(this);" />');
+                $(".removeimg").hide();
+                $(".Choicefile").bind('click', function () {
+                    $("#uploadfile").click();
+                });
+                $('.Choicefile').css('background', '#14142B');
+                $('.Choicefile').css('cursor', 'pointer');
+                $(".filename").text("");
+            });
+        })
+    </script>
+    <style>
+        .Choicefile {
+            display: block;
+            background: #14142B;
+            border: 1px solid #fff;
+            color: #fff;
+            width: 150px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            padding: 5px 0px;
+            border-radius: 5px;
+            font-weight: 500;
+            align-items: center;
+            justify-content: center;
+        }
 
-    }
-    $(document).ready(function () {
-      $(".Choicefile").bind('click', function () {
-        $("#uploadfile").click();
+        .Choicefile:hover {
+            text-decoration: none;
+            color: white;
+        }
+    </style>
 
-      });
-      $(".removeimg").click(function () {
-        $("#thumbimage").attr('src', '').hide();
-        $("#myfileupload").html('<input type="file" id="uploadfile"  onchange="readURL(this);" />');
-        $(".removeimg").hide();
-        $(".Choicefile").bind('click', function () {
-          $("#uploadfile").click();
+
+
+
+    </form>
+</body>
+
+<head>
+    <title>Sơ đồ thống kê</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <canvas id="myChart"></canvas>
+
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6'],
+                datasets: [{
+                    label: 'Doanh thu xe sao mai',
+                    data: [1200, 1800, 2200, 2000, 2400, 2800],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
         });
-        $('.Choicefile').css('background', '#14142B');
-        $('.Choicefile').css('cursor', 'pointer');
-        $(".filename").text("");
-      });
-    })
-  </script>
-<style>
-.Choicefile {
-    display: block;
-    background: #14142B;
-    border: 1px solid #fff;
-    color: #fff;
-    width: 150px;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    padding: 5px 0px;
-    border-radius: 5px;
-    font-weight: 500;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .Choicefile:hover {
-    text-decoration: none;
-    color: white;
-  }
-</style>
-
-
-
-
-</form>
+    </script>
 </body>
 
 </html>

@@ -33,7 +33,7 @@ function validate() {
     //     return true;
     //   }
     // }
-
+    
     fetch(loginUrl, {
     method: 'POST',
     headers: {
@@ -49,11 +49,14 @@ function validate() {
       console.log(result);
       otp = response.otp
       token = response.token;
+      localStorage.setItem('token',token);
       console.log(otp);
       console.log(token);
       $("#otp").text(otp);
     });
 
+    $(".email-login-form").hide();
+    $(".otp-form").show();
 
     // if (username == "admin" && password == "123456") {
     //     swal({

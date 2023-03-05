@@ -35,7 +35,7 @@
                     </span>
                     <!--=====FORM INPUT TÀI KHOẢN VÀ PASSWORD======-->
                     <form action="">
-                        <div class="wrap-input100 validate-input">
+                        <div class="wrap-input100 validate-input email-login-form">
                             <input class="input100" type="text" placeholder="Tài khoản quản trị" name="username"
                                 id="username">
                             <span class="focus-input100"></span>
@@ -45,11 +45,11 @@
                         </div>
 
                         <!--=====ĐĂNG NHẬP======-->
-                        <div class="container-login100-form-btn">
+                        <div class="container-login100-form-btn email-login-form">
                             <input type="button" value="Gửi mã đăng nhập" id="submit" onclick="validate()" />
                         </div>
                         <br/>
-                        <div class="wrap-input100 validate-input">
+                        <div class="wrap-input100 validate-input otp-form">
                             <input autocomplete="off" class="input100" type="password" placeholder="Mật khẩu"
                                 name="current-password" id="password-field">
                             <span toggle="#password-field" class="bx fa-fw bx-hide field-icon click-eye"></span>
@@ -61,7 +61,7 @@
 
                         <div id="otp" style="display:none"></div>
 
-                        <div class="container-login100-form-btn">
+                        <div class="container-login100-form-btn otp-form">
                             <input type="button" value="Đăng nhập" id="submit" onclick="login()" />
                         </div>
 
@@ -112,6 +112,10 @@
             } else {
                 input.attr("type", "password");
             }
+        });
+
+        $(document).ready(function () {
+            $(".otp-form").hide();
         });
     </script>
 </body>
