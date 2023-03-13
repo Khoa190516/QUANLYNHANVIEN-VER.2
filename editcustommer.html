@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>thêm mói</title>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="container">
+        <br>
+        <h2>thêm mới nhân viên</h2>
+        <div class="row">
+             <div class="col-6 offset-3">
+                <form onsubmit=" return addcustommer(this)">
+                    <div class="form-group">
+                        <label for="">Mã nhân viên</label>
+                        <input type="text" name="userID" class="form-control">
+                    </div>
+<div class="form-group">
+    <label for="">Tên nhân viên</label>
+    <input type="text" name="username" class="form-control">
+</div>
+<div class="form-group">
+    <label for="">Địa chỉ</label>
+    <input type="text" name="address" class="form-control">
+</div>
+<div class="form-group">
+    <label for="">email</label>
+    <input type="text" name="email" class="form-control">
+</div>
+<div class="form-group">
+    <label for="">số điện thoại</label>
+    <input type="text" name="phone" class="form-control">
+</div>
+<div class="form-group">
+    <label for=""> chức vụ</label>
+    <input type="text" name="roleName" class="form-control">
+</div>
+<div class="form-group">
+    <label for=""> trạng thái hoạt động</label>
+    <input type="text" name="isActive" class="form-control">
+</div>
+
+<div class="text-center">
+    <button type="submit" class="btn btn-sm btn-primary"> lưu</button>&nbsp;
+    <a href="custommer.html" class="btn btn-sm btn-danger">Hủy</a>
+</div>
+                </form> 
+        </div>
+       
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+          const token = localStorage.getItem('token');
+            console.log(token);
+        const apiUrl="https://localhost:7026/api/v1/accounts/update-status";
+        console.log(apiUrl);
+        function addcustommer(el){
+         const userID = document.querySelector('[name="userID"]').value;
+         const username = document.querySelector('[name="username"]').value;
+         const address = document.querySelector('[name="address"]').value;
+         const email = document.querySelector('[name="email"]').value;
+         const phone = document.querySelector('[name="phone"]').value;
+         const roleName = document.querySelector('[name="roleName"]').value;
+         const isActive = document.querySelector('[name="isActive"]').value;
+         const requestObj ={
+            userID:userID,
+            username:username,
+            address:address,
+            email:email,
+            phone:phone,
+            roleName:roleName,
+            isActive:isActive
+         };
+         console.log(requestObj);
+         //gửi request lên api để add
+         axios.put(apiUrl,requestObj,{
+            headers:{
+                'Authorization': `Bearer ${token}`
+            }
+         
+         })
+        
+         .then(data=>{
+            if(data.statusText ===""){
+                window.location.href='custommer.html';
+            }
+            console.log(data);
+         })
+            return false;
+        }
+    </script>
+</body>
+</html>

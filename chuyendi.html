@@ -132,6 +132,8 @@
                     <li ><a href="/thongke.html" data-toggle="tooltip" data-placement="bottom" title="XE">XE</a></li>
                     <li class="active"><a href="chuyendi.html" data-toggle="tooltip" data-placement="bottom" title="LỊCH CÔNG TÁC">QUẢN LÝ CHUYẾN ĐI</a>
                     </li>
+                    <li ><a href="quanlytuyenduong.html" data-toggle="tooltip" data-placement="bottom" title="LỊCH CÔNG TÁC">QUẢN LÝ TUYẾN ĐƯỜNG</a>
+                    </li>
                     <li><a href="/donhang.html" data-toggle="tooltip" data-placement="bottom" title="ĐƠN HÀNG">ĐƠN HÀNG</a>
                     </li>
                     <li><a href="#tour" data-toggle="tooltip" data-placement="bottom" title="PHẢN HỒI">PHẢN HỒI</a></li>
@@ -160,8 +162,8 @@
 
         </form>
         <b>CHỨC NĂNG CHÍNH:</b><Br>
-        <button class="nv btn add-new" type="button" data-toggle="tooltip" data-placement="top"
-            title="Thêm Nhân Viên"><i class="fas fa-user-plus"></i></button>
+        <a href="addchuyen.html" class="nv btn add-new" type="button" data-toggle="tooltip" data-placement="top"
+            title="Thêm Nhân Viên"><i class="fas fa-user-plus"></i></a>
         <button class="nv" type="button" onclick="sortTable()" data-toggle="tooltip" data-placement="top"
             title="Lọc Dữ Liệu"><i class="fa fa-filter" aria-hidden="true"></i></button>
         <button class="nv xuat" data-toggle="tooltip" data-placement="top" title="Xuất File"><i
@@ -426,7 +428,7 @@
                 $(".add-new").removeAttr("disabled");
             });
 
-            var tripUrl = "https://localhost:44305/api/v1/trip";
+            var tripUrl = "https://localhost:7026/api/v1/trip   ";
             fetch(tripUrl).then(response => {
                 return response.json();
             }).then(data => {

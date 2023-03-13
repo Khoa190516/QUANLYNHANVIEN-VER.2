@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>thêm mói</title>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.js"></script>
+    <link rel="stylesheet" href="quanlytuyenduong.html">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+  <form>
+    <label for="startLocation">Start location:</label>
+    <input type="text" id="startLocation" name="startLocation"><br><br>
+  
+    <label for="endLocation">End location:</label>
+    <input type="text" id="endLocation" name="endLocation"><br><br>
+  
+    <label for="description">Description:</label>
+    <input type="text" id="description" name="description"><br><br>
+    <label>Departure address:</label>
+  <input type="text" id="departureAddress" name="departureAddress"><br>
+    
+    <label for="departureTime">Departure time:</label>
+    <input type="datetime-local" id="departureTime" name="departureTime"><br><br>
+    <label>Destination address:</label>
+    <input type="text" id="destinationAddress" name="destinationAddress"><br>
+    <label for="arrivalTime">Arrival time:</label>
+    <input type="datetime-local" id="arrivalTime" name="arrivalTime"><br><br>
+  
+    <input type="submit" value="Submit">
+  </form>
+            <a href="quanlytuyenduong.html" class="btn btn-sm btn-danger">Hủy</a>
+          </form>
+          
+          <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+          <script>
+             const token = localStorage.getItem('token');
+            console.log(token);
+            const form = document.querySelector('form');
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  const data = {
+    startLocation: document.getElementById('startLocation').value,
+    endLocation: document.getElementById('endLocation').value,
+    description: document.getElementById('description').value,
+    departures: [
+      {
+        address: document.getElementById('departureAddress').value,
+        departureTime: document.getElementById('departureTime').value,
+      },
+    ],
+    destinations: [
+      {
+        address: document.getElementById('destinationAddress').value,
+        arrivalTime: document.getElementById('arrivalTime').value,
+      },
+    ],
+  };
+
+  axios.post('https://localhost:7026/api/v1/route/insert', data,{
+    headers:{
+                'Authorization': `Bearer ${token}`
+            }
+  })
+    .then(response => {
+      if(response.statusText ===""){
+                window.location.href='quanlytuyenduong.html';
+            }
+      console.log(response.data);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+});
+          </script>
+   
+</body>
+
+</html>

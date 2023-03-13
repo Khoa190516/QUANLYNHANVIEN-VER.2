@@ -126,13 +126,13 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="#home" data-toggle="tooltip" data-placement="bottom"
+                    <li ><a href="custommer.html" data-toggle="tooltip" data-placement="bottom"
                             title="NHÂN VIÊN">NHÂN VIÊN</a></li>
                     <li ><a href="/nhaxe.html" data-toggle="tooltip" data-placement="bottom" title="ĐIỂM DANH">QUẢN LÝ NHÀ XE</a></li>
-                    <li><a href="/thongke.html" data-toggle="tooltip" data-placement="bottom" title="XE">XE</a></li>
+                    <li ><a href="/thongke.html" data-toggle="tooltip" data-placement="bottom" title="XE">XE</a></li>
                     <li><a href="chuyendi.html" data-toggle="tooltip" data-placement="bottom" title="LỊCH CÔNG TÁC">QUẢN LÝ CHUYẾN ĐI</a>
                     </li>
-                    <li ><a href="quanlytuyenduong.html" data-toggle="tooltip" data-placement="bottom" title="LỊCH CÔNG TÁC">QUẢN LÝ TUYẾN ĐƯỜNG</a>
+                    <li  class="active"><a href="quanlytuyenduong.html" data-toggle="tooltip" data-placement="bottom" title="LỊCH CÔNG TÁC">QUẢN LÝ TUYẾN ĐƯỜNG</a>
                     </li>
                     <li><a href="/donhang.html" data-toggle="tooltip" data-placement="bottom" title="ĐƠN HÀNG">ĐƠN HÀNG</a>
                     </li>
@@ -154,15 +154,15 @@
     <div class="container-fluid al">
         <div id="clock"></div>
         <Br>
-        <p class="timkiemnhanvien"><b>TÌM KIẾM NHÂN VIÊN:</b></p><Br><Br>
-        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Nhập tên nhân viên cần tìm...">
+        <p class="timkiemnhanvien"><b>TÌM KIẾM CHUYẾN ĐI:</b></p><Br><Br>
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Nhập điểm xuất phát...">
         <i class="fa fa-search" aria-hidden="true"></i>
 
         <form action="">
 
         </form>
         <b>CHỨC NĂNG CHÍNH:</b><Br>
-        <a href="addcustommer.html" class="nv btn add-new" type="button" data-toggle="tooltip" data-placement="top"
+        <a href="themtuyenduong.html" class="nv btn add-new" type="button" data-toggle="tooltip" data-placement="top"
             title="Thêm Nhân Viên"><i class="fas fa-user-plus"></i></a>
         <button class="nv" type="button" onclick="sortTable()" data-toggle="tooltip" data-placement="top"
             title="Lọc Dữ Liệu"><i class="fa fa-filter" aria-hidden="true"></i></button>
@@ -178,40 +178,24 @@
         </div>
         <table class="table table-bordered" id="myTable">
             <thead>
-                <tr class="ex"> <th width="auto">Mã nhân viên</th>
-                    <th width="auto">Tên Nhân Viên</th>
-                    <th width="auto">Địa Chỉ</th>
-                    <th>Email</th>
-                    <th>Điện Thoại</th>
-                    <th>Role</th>
-                    <th>Trạng thái hoạt động</th>
+                <tr class="ex">
+                    <th width="auto">Mã tuyến đường</th>
+                    <th width="auto">Tuyến đường xuất phát</th>
+                    <th width="auto">Tuyến đường đến </th>
+                    <th>Nhà xe</th>
+                    <th> Địa điểm khởi hành </th>
+                    <th>Địa điểm đến</th>
                     <th width="5px; !important">Tính Năng</th>
-                    
                 </tr>
             </thead>
-            <tbody id="body-staff">
-                <tr>
-                    <td class="name">Minh</td>
-                    <td class="address">Nam</td>
-                    <td class="email">15/03/2000</td>
-                    <td class="phone">Thông Tin Bảo Mật</td>
-
-                    <td class="role">Admin</td>
-                    <td>
-                        <a class="add" title="Lưu Lại" data-toggle="tooltip"><i class="fa fa-floppy-o"
-                                aria-hidden="true"></i></a>
-                        <a class="edit" title="Sửa" data-toggle="tooltip"><i class="fa fa-pencil"
-                                aria-hidden="true"></i></a>
-                        <a class="delete" title="Xóa" data-toggle="tooltip"><i class="fa fa-trash-o"
-                                aria-hidden="true"></i></a>
-                    </td>
-                </tr>
+            <tbody id="table-trip">
                 <!-- <tr>
-                    <td>Trần Khả Ái</td>
-                    <td>Nữ</td>
-                    <td>12/02/1999</td>
-                    <td>155-157 Trần Quốc Thảo, Quận 3, Hồ Chí Minh</td>
-                    <td>Phục Vụ</td>
+                    <td>Sao Mai</td>
+                    <td> Sài Gòn</td>
+                    <td>Đà Lạt</td>
+                    <td>13:00</td>
+
+                    <td ><span class="badge bg-success">Đã khởi hành</span></td>
                     <td>
                         <a class="add" title="Lưu Lại" data-toggle="tooltip"><i class="fa fa-floppy-o"
                                 aria-hidden="true"></i></a>
@@ -222,11 +206,12 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Nguyễn Tấn Trung</td>
-                    <td>Nam</td>
-                    <td>07/10/1997</td>
-                    <td>6 Nguyễn Lương Bằng, Tân Phú, Quận 7, Hồ Chí Minh</td>
-                    <td>Dịch Vụ</td>
+                    <td>Sao Việt</td>
+                    <td>Sài Gòn </td>
+                    <td>Nha Trang</td>
+                    <td>15:00</td>
+                     
+                    <td ><span class="badge bg-success">chưa khởi hành</span></td>
                     <td>
                         <a class="add" title="Lưu Lại" data-toggle="tooltip"><i class="fa fa-floppy-o"
                                 aria-hidden="true"></i></a>
@@ -237,11 +222,12 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Trần Trúc An</td>
-                    <td>Nữ</td>
-                    <td>22/12/1999</td>
-                    <td>Số 3 Hòa Bình, Phường 3, Quận 11, Hồ Chí Minh</td>
-                    <td>Phục Vụ</td>
+                    <td>SAPA Group</td>
+                    <td> Sài Gòn </td>
+                    <td>Vũng tàu </td>
+                    <td>16:00 ngày 23/2/2023</td>
+
+                    <td ><span class="badge bg-success">chưa khởi hành</span></td>
                     <td>
                         <a class="add" title="Lưu Lại" data-toggle="tooltip"><i class="fa fa-floppy-o"
                                 aria-hidden="true"></i></a>
@@ -251,87 +237,16 @@
                                 aria-hidden="true"></i></a>
                     </td>
                 </tr>
+               
+               
+                
                 <tr>
-                    <td>Phạm Thu Cúc</td>
-                    <td>Nữ</td>
-                    <td>02/06/1998</td>
-                    <td>19 Đường Nguyễn Hữu Thọ, Tân Hưng, Quận 7, Hồ Chí Minh</td>
-                    <td>Thu Ngân</td>
-                    <td>
-                        <a class="add" title="Lưu Lại" data-toggle="tooltip"><i class="fa fa-floppy-o"
-                                aria-hidden="true"></i></a>
-                        <a class="edit" title="Sửa" data-toggle="tooltip"><i class="fa fa-pencil"
-                                aria-hidden="true"></i></a>
-                        <a class="delete" title="Xóa" data-toggle="tooltip"><i class="fa fa-trash-o"
-                                aria-hidden="true"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Nguyễn Thị Kim Ngân</td>
-                    <td>Nữ</td>
-                    <td>06/04/1998</td>
-                    <td>Số 13, Tân Thuận Đông, Quận 7, Hồ Chí Minh</td>
-                    <td>Phục Vụ</td>
-                    <td>
-                        <a class="add" title="Lưu Lại" data-toggle="tooltip"><i class="fa fa-floppy-o"
-                                aria-hidden="true"></i></a>
-                        <a class="edit" title="Sửa" data-toggle="tooltip"><i class="fa fa-pencil"
-                                aria-hidden="true"></i></a>
-                        <a class="delete" title="Xóa" data-toggle="tooltip"><i class="fa fa-trash-o"
-                                aria-hidden="true"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Nguyễn Anh Tuấn</td>
-                    <td>Nam</td>
-                    <td>23/07/1996</td>
-                    <td>59C Nguyễn Đình Chiểu, Quận 3, Hồ Chí Minh</td>
-                    <td>Dịch Vụ</td>
-                    <td>
-                        <a class="add" title="Lưu Lại" data-toggle="tooltip"><i class="fa fa-floppy-o"
-                                aria-hidden="true"></i></a>
-                        <a class="edit" title="Sửa" data-toggle="tooltip"><i class="fa fa-pencil"
-                                aria-hidden="true"></i></a>
-                        <a class="delete" title="Xóa" data-toggle="tooltip"><i class="fa fa-trash-o"
-                                aria-hidden="true"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Huỳnh Cẩm Thu</td>
-                    <td>Nữ</td>
-                    <td>19/01/1997</td>
-                    <td>764 Võ Văn Kiệt, Phường 1, Quận 5, Hồ Chí Minh</td>
-                    <td>Tư Vấn</td>
-                    <td>
-                        <a class="add" title="Lưu Lại" data-toggle="tooltip"><i class="fa fa-floppy-o"
-                                aria-hidden="true"></i></a>
-                        <a class="edit" title="Sửa" data-toggle="tooltip"><i class="fa fa-pencil"
-                                aria-hidden="true"></i></a>
-                        <a class="delete" title="Xóa" data-toggle="tooltip"><i class="fa fa-trash-o"
-                                aria-hidden="true"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Nguyễn Xuân Ly</td>
-                    <td>Nữ</td>
-                    <td>30/10/1999</td>
-                    <td>Đường Kênh T2 Ấp 6 Xã Hưng Long Huyện Bình Chánh, Hưng Long, Bình Chánh, Hồ Chí Minh</td>
-                    <td>Tư Vấn</td>
-                    <td>
-                        <a class="add" title="Lưu Lại" data-toggle="tooltip"><i class="fa fa-floppy-o"
-                                aria-hidden="true"></i></a>
-                        <a class="edit" title="Sửa" data-toggle="tooltip"><i class="fa fa-pencil"
-                                aria-hidden="true"></i></a>
-                        <a class="delete" title="Xóa" data-toggle="tooltip"><i class="fa fa-trash-o"
-                                aria-hidden="true"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Hoàng Xuân Nam</td>
-                    <td>Nữ</td>
-                    <td>20/7/1989</td>
-                    <td>37 Vạn Tượng, Phường 13, Quận 5, Hồ Chí Minh</td>
-                    <td>QL Kho</td>
+                    <td>Phương Trang</td>
+                    <td> Sài Gòn</td>
+                    <td> Buôn Ma Thuột</td>
+                    <td>	16:00 ngày 26/2/2023</td>
+                    
+                    <td ><span class="badge bg-success">chưa khởi hành</span></td>
                     <td>
                         <a class="add" title="Lưu Lại" data-toggle="tooltip"><i class="fa fa-floppy-o"
                                 aria-hidden="true"></i></a>
@@ -341,6 +256,8 @@
                                 aria-hidden="true"></i></a>
                     </td>
                 </tr> -->
+               
+                
             </tbody>
         </table>
         <div id="pageNavPosition" class="text-right"></div>
@@ -360,6 +277,9 @@
                 <i class="fab fa-youtube"></i>
                 <i class="fab fa-google"></i>
             </div>
+            <!-- <div class="col-lg-12">
+                2019 CopyRight Phan mem quan ly | Design by <a href="#">TruongBinIT</a>
+            </div> -->
         </div>
     </div>
     <script src="jquery.min.js"></script>
@@ -508,38 +428,61 @@
                 swal("Thành Công!", "Bạn Đã Xóa Thành Công", "success");
                 $(".add-new").removeAttr("disabled");
             });
-            var accountUrl = "https://localhost:7026/api/v1/accounts";
-            fetch(accountUrl)
-            .then(response => {
+
+            var tripUrl ="https://localhost:7026/api/v1/route";
+            fetch(tripUrl).then(response => {
                 return response.json();
             }).then(data => {
                 //alert(data.length);
-                console.log(data);
-                $("#body-staff").empty();
+                console.log(data.length);
+                $("#table-trip").empty();
+                
                 data.forEach(element => {
+                    depList1=element.destinations;
+                    depList=element.departures;
+                    var depString="";
+                    var depString1="";
+                    depList.forEach(element=>{
+                        depString += element.address+"\n";
+                     
+                    });
+                    depList1.forEach(element=>{
+                        depString1 += element.address+"\n";
+                     
+                    });
+                    var address1=depList1[0].address;
+                    console.log("Address"+address1);
+                    var address=   depList[0].address;
+                    console.log("Address"+address);
+                    console.log(depList);
+                    console.log(depList1);
+
+                 
                     var row = $('<tr>'+
                         '<td id="name'+element.id+'">'+element.id+'</td>'+
-                    '<td id="name'+element.id+'">'+element.username+'</td>'+
-                    '<td id="address'+element.id+'">'+element.address+'</td> '+
-                    '<td id="email'+element.id+'">'+element.email+'</td> '+
-                    '<td id="phone'+element.id+'">'+element.phone+'</td> '+
-                    '<td id="role'+element.id+'">'+element.roleName+'</td> '+
-                    '<td id="role'+element.id+'">'+element.isActive+'</td> '+
+                    '<td id="name'+element.id+'">'+element.startLocation+'</td>'+
+                    '<td id="email'+element.id+'">'+element.endLocation+'</td> '+
+                    '<td id="phone'+element.id+'">'+element.description+'</td> '+
+                    '<td id="departures'+element.id+'">'+depString +'</td> '+
+                    '<td id="destinations'+element.id+'">' +depString1 +'</td> '+
+        
                     '<td> '+
                         '<a class="add" title="Lưu Lại" data-toggle="tooltip"><i class="fa fa-floppy-o" '+
                                 'aria-hidden="true"></i></a> '+
-                        ' <a  href="editcustommer.html"class="edit" title="Sửa" data-toggle="tooltip"><i class="fa fa-pencil"aria-hidden="true"></i></a>'+
+                        '<a  href="edittuyenduong.html" class="edit" title="Sửa" data-toggle="tooltip"><i class="fa fa-pencil" '+
+                                'aria-hidden="true"></i></a> '+
                         '<a class="delete" title="Xóa" data-toggle="tooltip"><i  class="fa fa-trash-o" '+
                                 'aria-hidden="true"></i></a> '+
                     '</td> '+
                     '</tr>'
                 );
-                    $("#body-staff").append(row)            
+                    $("#table-trip").append(row)            
                 });
                 
             }).catch(err => {
                 console.log(error);
             })
+
         });
         //Not use
         jQuery(function () {

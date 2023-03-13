@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>thêm mói</title>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <title>xóa nhà xe</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <form>
+        <label>ID:</label>
+        <input type="text" id="id" name="id"><br>
+      
+        <button type="button" onclick="deleteData()">Delete</button>
+      <a href="nhaxe.html" class="btn btn-sm btn-danger">Hủy</a>
+    </form>
+  
+    <script>
+         const token = localStorage.getItem('token');
+            console.log(token);
+            function deleteData() {
+  const id = document.getElementById('id').value;
+
+  axios.delete(`https://localhost:7026/api/v1/bus-station/delete`,{
+    headers:{
+                'Authorization': `Bearer ${token}`
+            }
+  })
+    .then(response => {
+        if(response.statusText ===""){
+                window.location.href='nhà xe.html';
+            }
+      console.log('Data deleted successfully');
+    })
+    .catch(error => {
+      console.error('Error deleting data', error);
+    });
+}
+    </script>
+    
+</body>
+</html>

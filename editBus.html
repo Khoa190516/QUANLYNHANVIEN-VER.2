@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>thêm mói</title>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body onload="getCustommerInfor()">
+    <div class="container">
+        <br>
+        <h2>cập nhật thông tin xe</h2>
+        <div class="row">
+             <div class="col-6 offset-3">
+                <form onsubmit=" return editBus(this)">
+<div class="form-group">
+    <label for="">Tên nhân viên</label>
+    <input type="text" name="licensePlate" class="form-control">
+</div>
+<div class="form-group">
+    <label for="">Địa chỉ</label>
+    <input type="text" name="images" class="form-control">
+</div>
+<div class="form-group">
+    <label for="">email</label>
+    <input type="text" name="seatUnit" class="form-control">
+</div>
+<div class="form-group">
+    <label for="">số điện thoại</label>
+    <input type="text" name="isAvailable" class="form-control">
+</div>
+<div class="form-group">
+    <label for=""> chức vụ</label>
+    <input type="text" name="description" class="form-control">
+</div>
+
+<div class="text-center">
+    <button type="submit" class="btn btn-sm btn-primary"> lưu</button>&nbsp;
+    <a href="thongke.html" class="btn btn-sm btn-danger">Hủy</a>
+</div>
+                </form> 
+        </div>
+       
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        const token = localStorage.getItem('token');
+            console.log(token);
+        const apiUrl="https://localhost:7026/api/v1/bus/update";
+        var custommerInfo ={};
+        var id=null;
+        function getCustommerInfor(){
+// lấy tham số id trên d9uon2ng dẫn
+
+// điền dũ liệu lấy dc tù api vào trong form
+const urlParams =new URLSearchParams(window.location.search);
+  id =urlParams.get('id');
+// gửi request lên mock api để lấy thông tin của khách hàng  về 
+const getCustommerInfoUrl=apiUrl +"/"+id
+axios.put(getCustommerInfoUrl,{
+    headers:{
+                'Authorization': `Bearer ${token}`
+            }
+
+})
+.then(res=>{
+    if(res.statusText ==="OK"){
+             custommerInfo= res.data;
+            // điền dũ liệu lấy dc tù api vào trong form
+            document.querySelector('[name="id"]').value=custommerInfo.id;
+           document.querySelector('[name="licensePlate"]').value=custommerInfo.licensePlate;
+           document.querySelector('[name="images"]').value=custommerInfo.images;
+           document.querySelector('[name="seatUnit"]').value=custommerInfo.seatUnit;
+           document.querySelector('[name="isAvailable"]').value=custommerInfo.isAvailable;
+           document.querySelector('[name="description"]').value=custommerInfo.description;
+            
+            }
+    })
+       
+
+
+}
+        
+        function editBus(){
+            const licensePlate = document.querySelector('[name="username"]').value;
+         const images = document.querySelector('[name="images"]').value;
+         const  seatUnit= document.querySelector('[name="seatUnit"]').value;
+         const isAvailable= document.querySelector('[name="isAvailable"]').value;
+         const description = document.querySelector('[name="description"]').value;
+         custommerInfo.licensePlate =licensePlate;
+         custommerInfo.images =images;
+         custommerInfo.seatUnit =seatUnit;
+         custommerInfo.isAvailable =isAvailable;
+         custommerInfo.description=description; 
+         const updateCustommerUrl=apiUrl +"/"+id
+        
+         console.log(requestObj);
+         //gửi request lên api để add
+         axios.put(updateCustommerUrl,custommerInfo,{
+            headers:{
+                'Authorization': `Bearer ${token}`
+            }
+         })
+         .then(data=>{  
+            console.log(data);
+            if(data.statusText ===""){
+                window.location.href='thongke.html';
+            }
+            console.log(data);
+         })
+            return false;
+        }
+        
+    </script>
+</body>
+</html>

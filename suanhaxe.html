@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>thêm mói</title>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <title>Insert Data</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <form>
+      <label for="address">Address:</label><br>
+      <input type="text" id="address" name="address"><br>
+      <label for="isActive">Is Active:</label><br>
+      <input type="checkbox" id="isActive" name="isActive"><br><br>
+      <label for="isActive">Id:</label><br>
+      <input type="text" id="id" name="id"><br><br>
+      <button type="button" onclick="insertData()">Submit</button>
+      <a href="nhaxe.html" class="btn btn-sm btn-danger">Hủy</a>
+    </form>
+  
+    <script>
+         const token = localStorage.getItem('token');
+            console.log(token);
+      function insertData() {
+        const data = {
+          address: document.getElementById('address').value,
+          isActive: document.getElementById('isActive').checked,
+          id:document.getElementById('id').value
+        };
+  
+        axios.post('https://localhost:7026/api/v1/bus-station/update', data,{
+            headers:{
+                'Authorization': `Bearer ${token}`
+            }
+        })
+          .then(response => {
+            if(response.statusText ===""){
+                window.location.href='nhaxe.html';
+            }
+            console.log(response);
+            alert('đã sửa thành công!');
+          })
+          .catch(error => {
+            console.error(error);
+            alert('An error occurred while inserting data.');
+          });
+      }
+    </script>
+    
+</body>
+</html>
