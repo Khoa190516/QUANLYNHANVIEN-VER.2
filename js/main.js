@@ -19,7 +19,7 @@ function login(){
 
 function validate() {
 
-    var loginUrl = 'https://localhost:7026/api/v1/accounts/login';
+    var loginUrl = 'https://localhost:44305/api/v1/accounts/login';
     var username = document.getElementById("username").value;
     var password = document.getElementById("password-field").value;
     //Đặt 1 Admin ảo để đăng nhập quản trị

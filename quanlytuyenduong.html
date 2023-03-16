@@ -429,7 +429,7 @@
                 $(".add-new").removeAttr("disabled");
             });
 
-            var tripUrl ="https://localhost:7026/api/v1/route";
+            var tripUrl ="https://localhost:44305/api/v1/route";
             fetch(tripUrl).then(response => {
                 return response.json();
             }).then(data => {

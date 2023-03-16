@@ -130,12 +130,12 @@
                             VIÊN</a></li>
                     <li><a href="/nhaxe.html" data-toggle="tooltip" data-placement="bottom" title="ĐIỂM DANH">QUẢN LÝ
                             NHÀ XE</a></li>
-                    <li class="active"><a href="/thongke.html" data-toggle="tooltip" data-placement="bottom"
-                            title="XE">XE</a></li>
+                    <li><a href="/thongke.html" data-toggle="tooltip" data-placement="bottom" title="XE">XE</a></li>
                     <li><a href="chuyendi.html" data-toggle="tooltip" data-placement="bottom" title="CHUYẾN ĐI">QUẢN
                             LÝ CHUYẾN ĐI</a>
                     </li>
-                    <li><a href="/donhang.html" data-toggle="tooltip" data-placement="bottom" title="ĐƠN HÀNG">ĐƠN HÀNG</a>
+                    <li class="active"><a href="/donhang.html" data-toggle="tooltip" data-placement="bottom"
+                            title="ĐƠN HÀNG">ĐƠN HÀNG</a>
                     </li>
                     <li><a href="#tour" data-toggle="tooltip" data-placement="bottom" title="PHẢN HỒI">PHẢN HỒI</a></li>
                     <li>
@@ -430,6 +430,80 @@
                 return i;
             }
         }
+        // Admin functions
+        function confirmTransferred(orderId) {
+            // if (status == "Chờ xác nhận") {
+            //     const token = localStorage.getItem('token');
+            //     console.log(token);
+
+            //     var busUrl = "https://localhost:44305/api/v1/payment/confirm-transferred";
+            //     fetch(busUrl, {
+            //         method: 'PUT',
+            //         headers: {
+            //             'Accept': 'application/json',
+            //             'Content-Type': 'application/json',
+            //             'Authorization': "Bearer " + token
+            //         },
+            //         body: JSON.stringify({ orderId: orderId })
+            //     }).then(response => {
+            //         return response.json();
+            //     }).then(data => {
+            //         alert(data)
+            //         window.location.reload();
+            //     })
+            // } else {
+            //     alert("Đơn hàng chờ xác nhận mới có thể xác nhận thanh toán")
+            //     return;
+            // }
+            const token = localStorage.getItem('token');
+                console.log(token);
+
+                var busUrl = "https://localhost:44305/api/v1/payment/confirm-transferred";
+                fetch(busUrl, {
+                    method: 'PUT',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'Authorization': "Bearer " + token
+                    },
+                    body: JSON.stringify({ orderId: orderId })
+                }).then(response => {
+                    return response.json();
+                }).then(data => {
+                    alert("Xác nhận đã chuyển khoản thành công")
+                    window.location.reload();
+                })
+        }
+
+        function cancelOrder(orderId) {
+
+            // var stringArr = orderId.split('+');
+            // var id = stringArr[0];
+            // var status = stringArr[1];
+
+            // if(status=="Đã hủy"||status=="Đã hết hạn"){
+            //     alert("Đơn hàng đã bị hủy hoặc hết hạn");
+            //     return;
+            // }
+            const token = localStorage.getItem('token');
+            console.log(token);
+
+            var busUrl = "https://localhost:44305/api/v1/payment/cancel-order";
+            fetch(busUrl, {
+                method: 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': "Bearer " + token
+                },
+                body: JSON.stringify({ orderId: orderId })
+            }).then(response => {
+                return response.json();
+            }).then(data => {
+                alert("Hủy vé thành công")
+                window.location.reload();
+            })
+        }
 
         //Thêm
         $(document).ready(function () {
@@ -477,12 +551,12 @@
             });
             // Sửa
             $(document).on("click", ".edit", function () {
-                $(this).parents("tr").find("td:not(:last-child)").each(function () {
-                    $(this).html('<input type="text" class="form-control" value="' + $(this)
-                        .text() + '">');
-                });
-                $(this).parents("tr").find(".add, .edit").toggle();
-                $(".add-new").attr("disabled", "disabled");
+                // $(this).parents("tr").find("td:not(:last-child)").each(function () {
+                //     $(this).html('<input type="text" class="form-control" value="' + $(this)
+                //         .text() + '">');
+                // });
+                // $(this).parents("tr").find(".add, .edit").toggle();
+                // $(".add-new").attr("disabled", "disabled");
             });
             jQuery(function () {
                 jQuery(".add").click(function () {
@@ -515,19 +589,21 @@
                 $("#table-bus").empty();
                 data.forEach(element => {
                     var row = $('<tr>' +
-                        '<td id="name' + element.id + '">' + element.email + '</td>'+
+                        '<td class="bus-id" id="name' + element.id + '">' + element.email + '</td>' +
                         '<td id="email' + element.id + '">' + element.phone + '</td> ' +
                         '<td id="phone' + element.id + '">' + element.code + '</td> ' +
                         '<td id="role' + element.id + '">' + element.seatsName + '</td> ' +
                         '<td id="email' + element.id + '">' + element.amount.toLocaleString() + ' VND</td> ' +
-                        '<td id="email' + element.id + '">' + element.status.toUpperCase() + ' </td> ' +
+                        '<td id="status' + element.id + '">' + element.status.toUpperCase() + ' </td> ' +
                         '<td> ' +
-                        '<a class="add" title="Lưu Lại" data-toggle="tooltip"><i class="fa fa-floppy-o" ' +
-                        'aria-hidden="true"></i></a> ' +
-                        '<a class="edit" title="Sửa" data-toggle="tooltip"><i class="fa fa-pencil" ' +
-                        'aria-hidden="true"></i></a> ' +
-                        '<a class="delete" title="Xóa" data-toggle="tooltip"><i  class="fa fa-trash-o" ' +
-                        'aria-hidden="true"></i></a> ' +
+                        // '<a class="add" title="Lưu Lại" data-toggle="tooltip"><i class="fa fa-pencil" ' +
+                        // 'aria-hidden="true"></i></a> ' +
+                        '<button style="margin:5px; background-color:green; color:white; border-radius:5px" class="confirm-btn" onclick=confirmTransferred("' + element.id+ '")>Xác nhận</button>' +
+                        '<button style="margin:5px; background-color:red; color:white; border-radius:5px" class="cancel-btn" onclick=cancelOrder("'+element.id+'")>Hủy vé</button>' +
+                        // '<a class="edit" title="Xác nhận chuyển khoản" data-toggle="tooltip"><i style="color: green" class="fa fa-check" ' +
+                        // 'aria-hidden="true"></i></a> ' +
+                        // '<a class="delete" title="Hủy đơn hàng" data-toggle="tooltip"><i class="fa fa-ban" ' +
+                        // 'aria-hidden="true"></i></a> ' +
                         '</td> ' +
                         '</tr>'
                     );
