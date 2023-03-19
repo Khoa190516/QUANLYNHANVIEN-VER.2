@@ -431,6 +431,81 @@
             }
         }
 
+        // Admin functions
+        function confirmTransferred(orderId) {
+            // if (status == "Chờ xác nhận") {
+            //     const token = localStorage.getItem('token');
+            //     console.log(token);
+
+            //     var busUrl = "https://localhost:44305/api/v1/payment/confirm-transferred";
+            //     fetch(busUrl, {
+            //         method: 'PUT',
+            //         headers: {
+            //             'Accept': 'application/json',
+            //             'Content-Type': 'application/json',
+            //             'Authorization': "Bearer " + token
+            //         },
+            //         body: JSON.stringify({ orderId: orderId })
+            //     }).then(response => {
+            //         return response.json();
+            //     }).then(data => {
+            //         alert(data)
+            //         window.location.reload();
+            //     })
+            // } else {
+            //     alert("Đơn hàng chờ xác nhận mới có thể xác nhận thanh toán")
+            //     return;
+            // }
+            const token = localStorage.getItem('token');
+                console.log(token);
+
+                var busUrl = "https://localhost:44305/api/v1/payment/confirm-transferred";
+                fetch(busUrl, {
+                    method: 'PUT',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'Authorization': "Bearer " + token
+                    },
+                    body: JSON.stringify({ orderId: orderId })
+                }).then(response => {
+                    return response.json();
+                }).then(data => {
+                    alert("Xác nhận đã chuyển khoản thành công")
+                    window.location.reload();
+                })
+        }
+
+        function cancelOrder(orderId) {
+
+            // var stringArr = orderId.split('+');
+            // var id = stringArr[0];
+            // var status = stringArr[1];
+
+            // if(status=="Đã hủy"||status=="Đã hết hạn"){
+            //     alert("Đơn hàng đã bị hủy hoặc hết hạn");
+            //     return;
+            // }
+            const token = localStorage.getItem('token');
+            console.log(token);
+
+            var busUrl = "https://localhost:44305/api/v1/payment/cancel-order";
+            fetch(busUrl, {
+                method: 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': "Bearer " + token
+                },
+                body: JSON.stringify({ orderId: orderId })
+            }).then(response => {
+                return response.json();
+            }).then(data => {
+                alert("Hủy vé thành công")
+                window.location.reload();
+            })
+        }
+
         //Thêm
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
@@ -499,7 +574,7 @@
             const token = localStorage.getItem('token');
             console.log(token);
 
-            var busUrl = "https://localhost:44305/api/v1/payment/orders-by-company";
+            var busUrl = "https://localhost:7026/api/v1/payment/orders-by-company";
             fetch(busUrl, {
                 method: 'GET',
                 headers: {
@@ -521,13 +596,23 @@
                         '<td id="role' + element.id + '">' + element.seatsName + '</td> ' +
                         '<td id="email' + element.id + '">' + element.amount.toLocaleString() + ' VND</td> ' +
                         '<td id="email' + element.id + '">' + element.status.toUpperCase() + ' </td> ' +
+                        // '<td> ' +
+                        // '<a class="add" title="Lưu Lại" data-toggle="tooltip"><i class="fa fa-floppy-o" ' +
+                        // 'aria-hidden="true"></i></a> ' +
+                        // '<a class="edit" title="Sửa" data-toggle="tooltip"><i class="fa fa-pencil" ' +
+                        // 'aria-hidden="true"></i></a> ' +
+                        // '<a class="delete" title="Xóa" data-toggle="tooltip"><i  class="fa fa-trash-o" ' +
+                        // 'aria-hidden="true"></i></a> ' +
+                        // '</td> ' +
                         '<td> ' +
-                        '<a class="add" title="Lưu Lại" data-toggle="tooltip"><i class="fa fa-floppy-o" ' +
-                        'aria-hidden="true"></i></a> ' +
-                        '<a class="edit" title="Sửa" data-toggle="tooltip"><i class="fa fa-pencil" ' +
-                        'aria-hidden="true"></i></a> ' +
-                        '<a class="delete" title="Xóa" data-toggle="tooltip"><i  class="fa fa-trash-o" ' +
-                        'aria-hidden="true"></i></a> ' +
+                        // '<a class="add" title="Lưu Lại" data-toggle="tooltip"><i class="fa fa-pencil" ' +
+                        // 'aria-hidden="true"></i></a> ' +
+                        '<button style="margin:5px; background-color:green; color:white; border-radius:5px" class="confirm-btn" onclick=confirmTransferred("' + element.id+ '")>Xác nhận</button>' +
+                        '<button style="margin:5px; background-color:red; color:white; border-radius:5px" class="cancel-btn" onclick=cancelOrder("'+element.id+'")>Hủy vé</button>' +
+                        // '<a class="edit" title="Xác nhận chuyển khoản" data-toggle="tooltip"><i style="color: green" class="fa fa-check" ' +
+                        // 'aria-hidden="true"></i></a> ' +
+                        // '<a class="delete" title="Hủy đơn hàng" data-toggle="tooltip"><i class="fa fa-ban" ' +
+                        // 'aria-hidden="true"></i></a> ' +
                         '</td> ' +
                         '</tr>'
                     );

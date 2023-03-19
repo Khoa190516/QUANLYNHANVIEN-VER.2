@@ -39,40 +39,34 @@
   <!-- Sidebar menu-->
   <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
   <aside class="app-sidebar">
-    <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="/images/hay.jpg" width="50px"
-        alt="User Image">
+    <div class="app-sidebar__user">
       <div>
-        <p class="app-sidebar__user-name"><b>Võ Trường</b></p>
+        <p class="app-sidebar__user-name"><b>VEXETIENLOI</b></p>
         <p class="app-sidebar__user-designation">Chào mừng bạn trở lại</p>
       </div>
     </div>
     <hr>
     <ul class="app-menu">
-      <li><a class="app-menu__item haha" href="phan-mem-ban-hang.html"><i class='app-menu__icon bx bx-cart-alt'></i>
-          <span class="app-menu__label">POS Bán Hàng</span></a></li>
+    
       <li><a class="app-menu__item " href="index.html"><i class='app-menu__icon bx bx-tachometer'></i><span
             class="app-menu__label">Bảng điều khiển</span></a></li>
       <li><a class="app-menu__item " href="table-data-table.html"><i class='app-menu__icon bx bx-id-card'></i>
           <span class="app-menu__label">Quản lý nhân viên</span></a></li>
-      <li><a class="app-menu__item" href="#"><i class='app-menu__icon bx bx-user-voice'></i><span
-            class="app-menu__label">Quản lý khách hàng</span></a></li>
+
       <li><a class="app-menu__item" href="table-data-product.html"><i
-            class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý sản phẩm</span></a>
+            class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý xe</span></a>
       </li>
       <li><a class="app-menu__item " href="table-data-oder.html"><i class='app-menu__icon bx bx-task'></i><span
-            class="app-menu__label">Quản lý đơn hàng</span></a></li>
+            class="app-menu__label">Quản lý nhà xe</span></a></li>
       <li><a class="app-menu__item" href="table-data-banned.html"><i class='app-menu__icon bx bx-run'></i><span
-            class="app-menu__label">Quản lý nội bộ
+            class="app-menu__label">Quản lý tuyến đường
           </span></a></li>
       <li><a class="app-menu__item active" href="table-data-money.html"><i class='app-menu__icon bx bx-dollar'></i><span
-            class="app-menu__label">Bảng kê lương</span></a></li>
+            class="app-menu__label">Quản lý chuyến đi</span></a></li>
       <li><a class="app-menu__item" href="quan-ly-bao-cao.html"><i
             class='app-menu__icon bx bx-pie-chart-alt-2'></i><span class="app-menu__label">Báo cáo doanh thu</span></a>
       </li>
-      <li><a class="app-menu__item" href="page-calendar.html"><i class='app-menu__icon bx bx-calendar-check'></i><span
-            class="app-menu__label">Lịch công tác </span></a></li>
-      <li><a class="app-menu__item" href="#"><i class='app-menu__icon bx bx-cog'></i><span class="app-menu__label">Cài
-            đặt hệ thống</span></a></li>
+  
     </ul>
   </aside>
     <main class="app-content">
@@ -92,49 +86,41 @@
                   <a class="btn btn-add btn-sm" href="form-add-tien-luong.html" title="Thêm"><i class="fas fa-plus"></i>
                     Tạo mới</a>
                 </div>
-                <div class="col-sm-2">
-                  <a class="btn btn-delete btn-sm nhap-tu-file" type="button" title="Nhập" onclick="myFunction(this)"><i
-                      class="fas fa-file-upload"></i> Tải từ file</a>
-                </div>
+               
   
                 <div class="col-sm-2">
                   <a class="btn btn-delete btn-sm print-file" type="button" title="In" onclick="myApp.printTable()"><i
                       class="fas fa-print"></i> In dữ liệu</a>
                 </div>
-                <div class="col-sm-2">
-                  <a class="btn btn-delete btn-sm print-file js-textareacopybtn" type="button" title="Sao chép"><i
-                      class="fas fa-copy"></i> Sao chép</a>
-                </div>
+              
   
-                <div class="col-sm-2">
-                  <a class="btn btn-excel btn-sm" href="" title="In"><i class="fas fa-file-excel"></i> Xuất Excel</a>
-                </div>
-                <div class="col-sm-2">
-                  <a class="btn btn-delete btn-sm pdf-file" type="button" title="In" onclick="myFunction(this)"><i
-                      class="fas fa-file-pdf"></i> Xuất PDF</a>
-                </div>
+              
+           
+              
                 <div class="col-sm-2">
                   <a class="btn btn-delete btn-sm" type="button" title="Xóa" onclick="myFunction(this)"><i
                       class="fas fa-trash-alt"></i> Xóa tất cả </a>
                 </div>
               </div>
-                        <table class="table table-hover table-bordered" id="sampleTable">
+              <p class="timkiemnhanvien"><b>TÌM KIẾM NHÂN VIÊN:</b></p><Br><Br>
+                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Nhập tên nhân viên cần tìm...">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            <table class="table table-hover table-bordered" id="myTable">
                             <thead>
                                 <tr>
-                                    <th width="10"><input type="checkbox" id="all"></th>
-                                    <th>Tên nhân viên</th>
-                                    <th>Giới Tính</th>
-                                    <th>Chức vụ</th>
-                                    <th>Tiền lương</th>
-                                    <th>Trừ lương</th>
-                                    <th>Tiền thưởng</th>
-                                    <th>Tổng nhận</th>
-                                    <th>Trạng thái</th>
+                                    
+                                
+                                    <th>Điểm xuất phát</th>
+                                    <th width="200">Hình ảnh</th>
+                                    <th>Điểm đến</th>
+                                    <th>Thời gian khởi hành</th>
+                                    <th>Số ghế còn lại</th>
+                                    
                                     <th>Chức năng</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
+                            <tbody id="table-trip">
+                <!--               <tr>
                                     <td width="10"><input type="checkbox" name="check1" value="1"></td>
                                     <td>Hồ Thị Thanh Ngân</td>
                                     <td>Nữ</td>
@@ -276,7 +262,7 @@
                                 <td><span class="badge bg-danger">Chưa nhận tiền</span></td>
                                  <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"><i class="fas fa-trash-alt"></i></button>
                                         <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fa fa-edit"></i></button></td>
-                             </tr>
+                             </tr> -->
                             </tbody>
                         </table>
                     </div>
@@ -284,6 +270,63 @@
             </div>
         </div>
     </main>
+    <div class="modal fade" id="ModalUP" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
+data-keyboard="false">
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content">
+
+    <div class="modal-body">
+      <div class="row">
+        <div class="form-group  col-md-12">
+          <span class="thong-tin-thanh-toan">
+            <h5>Chỉnh sửa thông tin sản phẩm cơ bản</h5>
+          </span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <form method="POST" onsubmit="return addbus(this)">
+            <label class="control-label">Mã sản phẩm </label>
+            <input class="form-control" type="text" name="id" >
+          </div>
+        <div class="form-group col-md-6">
+            <label class="control-label">Biển số xe</label>
+          <input class="form-control" type="text"  name="licensePlate" required >
+        </div>
+        <div class="form-group  col-md-6">
+            <label class="control-label">Hình ảnh</label>
+          <input class="form-control" type="text" name="images" required >
+        </div>
+        <div class="form-group col-md-6 ">
+            <label for="exampleSelect1" class="control-label" >Tình trạng sản phẩm</label>
+            <select class="form-control" id="exampleSelect1"  name="isAvailable" >
+              <option>đang hoạt động</option>
+              <option>Ngưng hoạt động</option>
+              
+            </select>
+          </div>
+          <div class="form-group col-md-6">
+            <label class="control-label">Số ghế</label>
+            <input class="form-control" type="text" name="seatUnit" >
+          </div>
+          <div class="form-group col-md-6">
+            <label class="control-label">Hiện có sẵn</label>
+            <input class="form-control" type="text" name="description">
+          </div>
+          </div>
+      </div>
+      <BR>
+  
+      <BR>
+      <BR>
+      <button class="btn btn-save"  type="submit">Lưu lại</button>
+      <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
+      <BR>
+    </div>
+  </form> 
+  </div>
+</div>
+</div>
     <!-- Essential javascripts for application to work-->
   <script src="js/jquery-3.2.1.min.js"></script>
   <script src="js/popper.min.js"></script>
@@ -326,7 +369,21 @@
       $('#sampleTable tbody :checkbox').prop('checked', $(this).is(':checked'));
       e.stopImmediatePropagation();
     });
-
+ //Tìm kiếm
+ function myFunction() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";  }}}}
     //EXCEL
     // $(document).ready(function () {
     //   $('#').DataTable({
@@ -337,8 +394,46 @@
     //     ]
     //   });
     // });
-
-
+     //xóa   
+ $(document).on("click", ".delete", function () {
+                $(this).parents("tr").remove();
+                swal("Thành Công!", "Bạn Đã Xóa Thành Công", "success");
+                $(".add-new").removeAttr("disabled");
+            });
+    var tripUrl = "https://localhost:44305/api/v1/trip";
+            fetch(tripUrl).then(response => {
+                return response.json();
+            }).then(data => {
+                //alert(data.length);
+                console.log(data.length);
+                $("#table-trip").empty();
+                data.forEach(element => {
+                    var row = $('<tr>'+
+                  
+                    '<td id="name'+element.id+'">'+element.departureName+'</td>'+
+                    '<td id="address'+element.id+'"><img width="100%" height="100%" src='+element.bus.images +'></td> '+
+                    '<td id="email'+element.id+'">'+element.destinationName+'</td> '+
+                    '<td id="phone'+element.id+'">'+element.departureDate+'</td> '+
+                    '<td id="role'+element.id+'">'+element.bus.seatsLeft+'</td> '+
+                    '<td class="table-td-center"> '+
+                        '<a class="delete" type="button" title="Xóa"data-toggle="tooltip" onclick="myFunction(this)"><i class="fas fa-trash-alt"></i> '+
+                               
+                        ' <a   class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal" data-target="#ModalUP"><i class="fas fa-edit"></i></a>'+
+                        '<a class="delete" title="Xóa" data-toggle="tooltip"><i  class="fa fa-trash-o" '+
+                                'aria-hidden="true"></i></a> '+
+                    '</td> '+
+                    '</tr>'
+                );
+                    $("#table-trip").append(row)            
+                });
+                
+            }).catch(err => {
+                console.log(error);
+            })
+//tooltip
+$(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
     //Thời Gian
     function time() {
       var today = new Date();

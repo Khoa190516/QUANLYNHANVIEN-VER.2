@@ -18,7 +18,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
-
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
 <body onload="time()" class="app sidebar-mini rtl">
@@ -39,40 +39,34 @@
   <!-- Sidebar menu-->
   <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
   <aside class="app-sidebar">
-    <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="/images/hay.jpg" width="50px"
-        alt="User Image">
+    <div class="app-sidebar__user">
       <div>
-        <p class="app-sidebar__user-name"><b>Võ Trường</b></p>
+        <p class="app-sidebar__user-name"><b>VEXETIENLOI</b></p>
         <p class="app-sidebar__user-designation">Chào mừng bạn trở lại</p>
       </div>
     </div>
     <hr>
     <ul class="app-menu">
-      <li><a class="app-menu__item haha" href="phan-mem-ban-hang.html"><i class='app-menu__icon bx bx-cart-alt'></i>
-          <span class="app-menu__label">POS Bán Hàng</span></a></li>
+     
       <li><a class="app-menu__item " href="index.html"><i class='app-menu__icon bx bx-tachometer'></i><span
             class="app-menu__label">Bảng điều khiển</span></a></li>
       <li><a class="app-menu__item " href="table-data-table.html"><i class='app-menu__icon bx bx-id-card'></i>
           <span class="app-menu__label">Quản lý nhân viên</span></a></li>
-      <li><a class="app-menu__item" href="#"><i class='app-menu__icon bx bx-user-voice'></i><span
-            class="app-menu__label">Quản lý khách hàng</span></a></li>
+     
       <li><a class="app-menu__item" href="table-data-product.html"><i
-            class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý sản phẩm</span></a>
+            class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý xe</span></a>
       </li>
       <li><a class="app-menu__item active" href="table-data-oder.html"><i class='app-menu__icon bx bx-task'></i><span
-            class="app-menu__label">Quản lý đơn hàng</span></a></li>
+            class="app-menu__label">Quản lý nhà xe</span></a></li>
       <li><a class="app-menu__item" href="table-data-banned.html"><i class='app-menu__icon bx bx-run'></i><span
-            class="app-menu__label">Quản lý nội bộ
+            class="app-menu__label">Quản lý tuyến đường
           </span></a></li>
       <li><a class="app-menu__item" href="table-data-money.html"><i class='app-menu__icon bx bx-dollar'></i><span
-            class="app-menu__label">Bảng kê lương</span></a></li>
+            class="app-menu__label">Quản lý chuyến đi</span></a></li>
       <li><a class="app-menu__item" href="quan-ly-bao-cao.html"><i
             class='app-menu__icon bx bx-pie-chart-alt-2'></i><span class="app-menu__label">Báo cáo doanh thu</span></a>
       </li>
-      <li><a class="app-menu__item" href="page-calendar.html"><i class='app-menu__icon bx bx-calendar-check'></i><span
-            class="app-menu__label">Lịch công tác </span></a></li>
-      <li><a class="app-menu__item" href="#"><i class='app-menu__icon bx bx-cog'></i><span class="app-menu__label">Cài
-            đặt hệ thống</span></a></li>
+     
     </ul>
   </aside>
     <main class="app-content">
@@ -90,49 +84,41 @@
                 <div class="col-sm-2">
   
                   <a class="btn btn-add btn-sm" href="form-add-don-hang.html" title="Thêm"><i class="fas fa-plus"></i>
-                    Tạo mới đơn hàng</a>
+                    Tạo mới nhà xe</a>
                 </div>
-                <div class="col-sm-2">
-                  <a class="btn btn-delete btn-sm nhap-tu-file" type="button" title="Nhập" onclick="myFunction(this)"><i
-                      class="fas fa-file-upload"></i> Tải từ file</a>
-                </div>
+               
   
                 <div class="col-sm-2">
                   <a class="btn btn-delete btn-sm print-file" type="button" title="In" onclick="myApp.printTable()"><i
                       class="fas fa-print"></i> In dữ liệu</a>
                 </div>
-                <div class="col-sm-2">
-                  <a class="btn btn-delete btn-sm print-file js-textareacopybtn" type="button" title="Sao chép"><i
-                      class="fas fa-copy"></i> Sao chép</a>
-                </div>
+                
   
-                <div class="col-sm-2">
-                  <a class="btn btn-excel btn-sm" href="" title="In"><i class="fas fa-file-excel"></i> Xuất Excel</a>
-                </div>
-                <div class="col-sm-2">
-                  <a class="btn btn-delete btn-sm pdf-file" type="button" title="In" onclick="myFunction(this)"><i
-                      class="fas fa-file-pdf"></i> Xuất PDF</a>
-                </div>
+              
+              
                 <div class="col-sm-2">
                   <a class="btn btn-delete btn-sm" type="button" title="Xóa" onclick="myFunction(this)"><i
                       class="fas fa-trash-alt"></i> Xóa tất cả </a>
                 </div>
               </div>
-              <table class="table table-hover table-bordered" id="sampleTable">
+              <p class="timkiemnhanvien"><b>TÌM KIẾM NHÂN VIÊN:</b></p><Br><Br>
+                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Nhập tên nhân viên cần tìm...">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            <table class="table table-hover table-bordered" id="myTable">
                 <thead>
                   <tr>
-                    <th width="10"><input type="checkbox" id="all"></th>
-                    <th>ID đơn hàng</th>
-                    <th>Khách hàng</th>
-                    <th>Đơn hàng</th>
-                    <th>Số lượng</th>
-                    <th>Tổng tiền</th>
-                    <th>Tình trạng</th>
+                    
+                   
+                    <th>Nhà Xe</th>
+                    <th>ID xe</th>
+                    <th>Địa chỉ</th>
+                    <th>hiện có sẵn</th>
+                 
                     <th>Tính năng</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
+                <tbody id="table-busstation">
+             <!--       <tr>
                     <td width="10"><input type="checkbox" name="check1" value="1"></td>
                     <td>MD0837</td>
                     <td>Triệu Thanh Phú</td>
@@ -198,13 +184,63 @@
                     <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"><i class="fas fa-trash-alt"></i> </button>
                       <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fa fa-edit"></i></button></td>
                   </tr>
+                    -->  
                 </tbody>
+
               </table>
             </div>
           </div>
         </div>
       </div>
     </main>
+    <!--
+  MODAL
+-->
+  <div class="modal fade" id="ModalUP" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
+  data-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <div class="row">
+          <div class="form-group  col-md-12">
+            <span class="thong-tin-thanh-toan">
+              <h5>Chỉnh sửa thông tin nhân viên cơ bản</h5>
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label class="control-label">ĐỈA CHỈ</label>
+            <input class="form-control" type="text"  id="address" name="address" required >
+          </div>
+          <div class="form-group col-md-6">
+            <label class="control-label">Hiện có sẵn</label>
+            <input class="form-control"  type="checkbox" id="isActive" name="isActive" required >
+          </div>
+          <div class="form-group  col-md-6">
+            <label class="control-label">ID  nhà xe</label>
+            <input class="form-control" id="id" name="id" required >
+          </div>
+        
+          
+             
+            </select>
+          </div>
+        </div>
+        <BR>
+    
+        <BR>
+        <BR>
+        <button class="btn btn-save" data-dismiss="modal" type="button"  onclick="insertData()">Lưu lại</button>
+        <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
+        <BR>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
   <!-- Essential javascripts for application to work-->
   <script src="js/jquery-3.2.1.min.js"></script>
   <script src="js/popper.min.js"></script>
@@ -258,8 +294,96 @@
     //     ]
     //   });
     // });
+     //xóa   
+ $(document).on("click", ".delete", function () {
+                $(this).parents("tr").remove();
+                swal("Thành Công!", "Bạn Đã Xóa Thành Công", "success");
+                $(".add-new").removeAttr("disabled");
+            });
+    const token = localStorage.getItem('token');
+            console.log(token); 
+    var busUrl = "https://localhost:44305/api/v1/bus-station";
+            fetch(busUrl, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': "Bearer " + token
+                },
+            }).then(response => {
+                return response.json();
+            }).then(data => {
+                //alert(data.length);
+                console.log(data.length);
+                $("#table-busstation").empty();
+                data.forEach(element => {
+                    var row = $('<tr>' +
+                        
+                        '<td id="name' + element.id + '">' + element.owner + '</td>'+
+                        '<td id="name' + element.id + '">' + element.id + '</td>'+
+                        '<td id="email' + element.id + '">' + element.address + '</td> ' +
+                      
+                        '<td id="phone' + element.id + '">' + element.isActive + '</td> ' +
+                        
+                        '<td class="table-td-center"> '+
+                        '<a class="delete" type="button" title="Xóa"data-toggle="tooltip" onclick="myFunction(this)"><i class="fas fa-trash-alt"></i> '+
+                               
+                        ' <a   class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal" data-target="#ModalUP"><i class="fas fa-edit"></i></a>'+
+                        '<a class="delete" title="Xóa" data-toggle="tooltip"><i  class="fa fa-trash-o" '+
+                                'aria-hidden="true"></i></a> '+
+                    '</td> '+
+                    '</tr>'
+                    );
+                    $("#table-busstation").append(row)
+                });
 
-
+            }).catch(err => {
+                console.log(error);
+            })
+             //Tìm kiếm
+    function myFunction() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";  }}}}
+           //tooltip
+$(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+      function insertData() {
+        const data = {
+          address: document.getElementById('address').value,
+          isActive: document.getElementById('isActive').checked,
+          id:document.getElementById('id').value
+        };
+  
+        axios.post('https://localhost:44305/api/v1/bus-station/update', data,{
+            headers:{
+                'Authorization': `Bearer ${token}`
+            }
+        })
+          .then(response => {
+            if(response.statusText ===""){
+                window.location.href='table-data-oder.html';
+            }
+            console.log(response);
+            alert('đã sửa thành công!');
+          })
+          .catch(error => {
+            console.error(error);
+            alert('An error occurred while inserting data.');
+          });
+      }
+    
     //Thời Gian
     function time() {
       var today = new Date();

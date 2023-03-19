@@ -18,7 +18,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
-
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
 <body onload="time()" class="app sidebar-mini rtl">
@@ -39,99 +39,85 @@
   <!-- Sidebar menu-->
   <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
   <aside class="app-sidebar">
-    <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="/images/hay.jpg" width="50px"
-        alt="User Image">
+    <div class="app-sidebar__user">
       <div>
-        <p class="app-sidebar__user-name"><b>Võ Trường</b></p>
+        <p class="app-sidebar__user-name"><b>VEXETIENLOI</b></p>
         <p class="app-sidebar__user-designation">Chào mừng bạn trở lại</p>
       </div>
     </div>
     <hr>
     <ul class="app-menu">
-      <li><a class="app-menu__item haha" href="phan-mem-ban-hang.html"><i class='app-menu__icon bx bx-cart-alt'></i>
-          <span class="app-menu__label">POS Bán Hàng</span></a></li>
+
       <li><a class="app-menu__item " href="index.html"><i class='app-menu__icon bx bx-tachometer'></i><span
             class="app-menu__label">Bảng điều khiển</span></a></li>
       <li><a class="app-menu__item " href="table-data-table.html"><i class='app-menu__icon bx bx-id-card'></i>
           <span class="app-menu__label">Quản lý nhân viên</span></a></li>
-      <li><a class="app-menu__item" href="#"><i class='app-menu__icon bx bx-user-voice'></i><span
-            class="app-menu__label">Quản lý khách hàng</span></a></li>
+
       <li><a class="app-menu__item" href="table-data-product.html"><i
-            class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý sản phẩm</span></a>
+            class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý xe</span></a>
       </li>
       <li><a class="app-menu__item " href="table-data-oder.html"><i class='app-menu__icon bx bx-task'></i><span
-            class="app-menu__label">Quản lý đơn hàng</span></a></li>
+            class="app-menu__label">Quản lý nhà xe</span></a></li>
       <li><a class="app-menu__item active" href="table-data-banned.html"><i class='app-menu__icon bx bx-run'></i><span
-            class="app-menu__label">Quản lý nội bộ
+            class="app-menu__label">Quản lý tuyến đường
           </span></a></li>
       <li><a class="app-menu__item" href="table-data-money.html"><i class='app-menu__icon bx bx-dollar'></i><span
-            class="app-menu__label">Bảng kê lương</span></a></li>
+            class="app-menu__label">Quản lý chuyến đi</span></a></li>
       <li><a class="app-menu__item" href="quan-ly-bao-cao.html"><i
             class='app-menu__icon bx bx-pie-chart-alt-2'></i><span class="app-menu__label">Báo cáo doanh thu</span></a>
       </li>
-      <li><a class="app-menu__item" href="page-calendar.html"><i class='app-menu__icon bx bx-calendar-check'></i><span
-            class="app-menu__label">Lịch công tác </span></a></li>
-      <li><a class="app-menu__item" href="#"><i class='app-menu__icon bx bx-cog'></i><span class="app-menu__label">Cài
-            đặt hệ thống</span></a></li>
+
     </ul>
   </aside>
-    <main class="app-content">
-      <div class="app-title">
-        <ul class="app-breadcrumb breadcrumb side">
-          <li class="breadcrumb-item active"><a href="#"><b>Quản lý nội bộ</b></a></li>
-        </ul>
-        <div id="clock"></div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="tile">
-            <div class="tile-body">
-              <div class="row element-button">
-                <div class="col-sm-2">
-  
-                  <a class="btn btn-add btn-sm" href="form-add-bi-cam.html" title="Thêm"><i class="fas fa-plus"></i>
-                    Tạo mới</a>
-                </div>
-                <div class="col-sm-2">
-                  <a class="btn btn-delete btn-sm nhap-tu-file" type="button" title="Nhập" onclick="myFunction(this)"><i
-                      class="fas fa-file-upload"></i> Tải từ file</a>
-                </div>
-  
-                <div class="col-sm-2">
-                  <a class="btn btn-delete btn-sm print-file" type="button" title="In" onclick="myApp.printTable()"><i
-                      class="fas fa-print"></i> In dữ liệu</a>
-                </div>
-                <div class="col-sm-2">
-                  <a class="btn btn-delete btn-sm print-file js-textareacopybtn" type="button" title="Sao chép"><i
-                      class="fas fa-copy"></i> Sao chép</a>
-                </div>
-  
-                <div class="col-sm-2">
-                  <a class="btn btn-excel btn-sm" href="" title="In"><i class="fas fa-file-excel"></i> Xuất Excel</a>
-                </div>
-                <div class="col-sm-2">
-                  <a class="btn btn-delete btn-sm pdf-file" type="button" title="In" onclick="myFunction(this)"><i
-                      class="fas fa-file-pdf"></i> Xuất PDF</a>
-                </div>
-                <div class="col-sm-2">
-                  <a class="btn btn-delete btn-sm" type="button" title="Xóa" onclick="myFunction(this)"><i
-                      class="fas fa-trash-alt"></i> Xóa tất cả </a>
-                </div>
+  <main class="app-content">
+    <div class="app-title">
+      <ul class="app-breadcrumb breadcrumb side">
+        <li class="breadcrumb-item active"><a href="#"><b>Quản lý nội bộ</b></a></li>
+      </ul>
+      <div id="clock"></div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="tile">
+          <div class="tile-body">
+            <div class="row element-button">
+              <div class="col-sm-2">
+
+                <a class="btn btn-add btn-sm" href="form-add-bi-cam.html" title="Thêm"><i class="fas fa-plus"></i>
+                  Tạo mới</a>
               </div>
-              <table class="table table-hover table-bordered" id="sampleTable">
-                <thead>
-                  <tr>
-                    <th width="10"><input type="checkbox" id="all"></th>
-                    <th>Họ và Tên</th>
-                    <th>Ngày sinh</th>
-                    <th>Chức vụ</th>
-                    <th>Lý do cấm</th>
-                    <th>Tình trạng</th>
-                    <th>Chức năng</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
+
+
+              <div class="col-sm-2">
+                <a class="btn btn-delete btn-sm print-file" type="button" title="In" onclick="myApp.printTable()"><i
+                    class="fas fa-print"></i> In dữ liệu</a>
+              </div>
+
+
+
+
+              <div class="col-sm-2">
+                <a class="btn btn-delete btn-sm" type="button" title="Xóa" onclick="myFunction(this)"><i
+                    class="fas fa-trash-alt"></i> Xóa tất cả </a>
+              </div>
+            </div>
+            <p class="timkiemnhanvien"><b>TÌM KIẾM TUYẾN ĐƯỜNG:</b></p><Br><Br>
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Nhập tuyến đường...">
+            <i class="fa fa-search" aria-hidden="true"></i>
+            <table class="table table-hover table-bordered" id="myTable">
+              <thead>
+                <tr>
+                  <th>Địa điểm khởi hành</th>
+                  <!-- <th>Mã tuyến đường</th> -->
+                  <th>Điểm đến</th>
+                  <th>Nhà xe</th>
+                  <th>Điểm đón</th>
+                  <th>Địa trả</th>
+                  <th>Chức năng</th>
+                </tr>
+              </thead>
+              <tbody id="table-trip">
+                <!--<tr>
                     <td width="10"><input type="checkbox" name="check1" value="1"></td>
                     <td>Kiều Thái Anh</td>
                     <td>10/09/1998</td>
@@ -170,15 +156,76 @@
                     <td><span class="badge bg-danger">Sa thải</span></td>
                     <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"><i class="fas fa-trash-alt"></i></button>
                       <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fa fa-edit"></i></button></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+                  </tr>-->
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
-    </main>
-   <!-- Essential javascripts for application to work-->
+    </div>
+  </main>
+  <!-- <div class="modal fade" id="ModalUP" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
+    data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+
+        <div class="modal-body">
+          <div class="row">
+            <div class="form-group  col-md-12">
+              <span class="thong-tin-thanh-toan">
+                <h5>Chỉnh sửa thông tin tuyến di cơ bản</h5>
+              </span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <form>
+                <label class="control-label">Mã tuyến đường: </label>
+                <input class="form-control" type="text" id="id" name="id">
+            </div>
+            <div class="form-group col-md-6">
+              <label class="control-label">tuyến đường xuất phát</label>
+              <input class="form-control" type="text" id="startLocation" name="startLocation" required>
+            </div>
+            <div class="form-group  col-md-6">
+              <label class="control-label">tuyến đường đến</label>
+              <input class="form-control" type="text" id="endLocation" name="endLocation" required>
+            </div>
+            <div class="form-group  col-md-6">
+              <label class="control-label">Nhà xe</label>
+              <input class="form-control" type="text" id="description" name="description" required>
+            </div>
+            <div class="form-group  col-md-6">
+              <label class="control-label">Địa điểm khởi hành</label>
+              <input class="form-control" type="text" id="departureAddress" name="departureAddress" required>
+            </div>
+            <div class="form-group  col-md-6">
+              <label class="control-label">Thời gian khởi hành</label>
+              <input class="form-control" type="datetime-local" id="departureTime" name="departureTime" required>
+            </div>
+
+
+            <div class="form-group col-md-6">
+              <label class="control-label">Địa điểm đến</label>
+              <input class="form-control" type="text" id="destinationAddress" name="destinationAddress">
+            </div>
+            <div class="form-group col-md-6">
+              <label class="control-label">thời gian đến</label>
+              <input class="form-control" type="datetime-local" id="arrivalTime" name="arrivalTime">
+            </div>
+          </div>
+        </div>
+        </form>
+        <button class="btn btn-save" type="submit">Lưu lại</button>
+        </form>
+        <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
+        </form>
+        <BR>
+      </div>
+
+    </div>
+  </div> -->
+  <!-- Essential javascripts for application to work-->
   <script src="js/jquery-3.2.1.min.js"></script>
   <script src="js/popper.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
@@ -194,32 +241,32 @@
   <script type="text/javascript" src="js/plugins/dataTables.bootstrap.min.js"></script>
   <script type="text/javascript">$('#sampleTable').DataTable();</script>
   <script>
-    function deleteRow(r) {
-      var i = r.parentNode.parentNode.rowIndex;
-      document.getElementById("myTable").deleteRow(i);
-    }
-    jQuery(function () {
-      jQuery(".trash").click(function () {
-        swal({
-          title: "Cảnh báo",
-         
-          text: "Bạn có chắc chắn là muốn xóa?",
-          buttons: ["Hủy bỏ", "Đồng ý"],
-        })
-          .then((willDelete) => {
-            if (willDelete) {
-              swal("Đã xóa thành công.!", {
-                
-              });
-            }
-          });
-      });
-    });
-    oTable = $('#sampleTable').dataTable();
-    $('#all').click(function (e) {
-      $('#sampleTable tbody :checkbox').prop('checked', $(this).is(':checked'));
-      e.stopImmediatePropagation();
-    });
+    // function deleteRow(r) {
+    //   var i = r.parentNode.parentNode.rowIndex;
+    //   document.getElementById("myTable").deleteRow(i);
+    // }
+    // jQuery(function () {
+    //   jQuery(".trash").click(function () {
+    //     swal({
+    //       title: "Cảnh báo",
+
+    //       text: "Bạn có chắc chắn là muốn xóa?",
+    //       buttons: ["Hủy bỏ", "Đồng ý"],
+    //     })
+    //       .then((willDelete) => {
+    //         if (willDelete) {
+    //           swal("Đã xóa thành công.!", {
+
+    //           });
+    //         }
+    //       });
+    //   });
+    // });
+    // oTable = $('#sampleTable').dataTable();
+    // $('#all').click(function (e) {
+    //   $('#sampleTable tbody :checkbox').prop('checked', $(this).is(':checked'));
+    //   e.stopImmediatePropagation();
+    // });
 
     //EXCEL
     // $(document).ready(function () {
@@ -231,58 +278,182 @@
     //     ]
     //   });
     // });
+    //xóa
+    const token = localStorage.getItem('token');
+    console.log(token);
+    $(document).ready(function () {
+      var tripUrl = "https://localhost:44305/api/v1/route";
+      fetch(tripUrl).then(response => {
+        return response.json();
+      }).then(data => {
+        //alert(data.length);
+        console.log(data.length);
+        $("#table-trip").empty();
+
+        data.forEach(element => {
+          depList1 = element.destinations;
+          depList = element.departures;
+          var depString = "";
+          var depString1 = "";
+          depList.forEach(element => {
+            depString += element.address + '<br/>';
+
+          });
+          depList1.forEach(element => {
+            depString1 += element.address + '<br/>';
+
+          });
+          var address1 = depList1[0].address;
+          console.log("Address" + address1);
+          var address = depList[0].address;
+          console.log("Address" + address);
+          console.log(depList);
+          console.log(depList1);
 
 
-    //Thời Gian
-    function time() {
-      var today = new Date();
-      var weekday = new Array(7);
-      weekday[0] = "Chủ Nhật";
-      weekday[1] = "Thứ Hai";
-      weekday[2] = "Thứ Ba";
-      weekday[3] = "Thứ Tư";
-      weekday[4] = "Thứ Năm";
-      weekday[5] = "Thứ Sáu";
-      weekday[6] = "Thứ Bảy";
-      var day = weekday[today.getDay()];
-      var dd = today.getDate();
-      var mm = today.getMonth() + 1;
-      var yyyy = today.getFullYear();
-      var h = today.getHours();
-      var m = today.getMinutes();
-      var s = today.getSeconds();
-      m = checkTime(m);
-      s = checkTime(s);
-      nowTime = h + " giờ " + m + " phút " + s + " giây";
-      if (dd < 10) {
-        dd = '0' + dd
-      }
-      if (mm < 10) {
-        mm = '0' + mm
-      }
-      today = day + ', ' + dd + '/' + mm + '/' + yyyy;
-      tmp = '<span class="date"> ' + today + ' - ' + nowTime +
-        '</span>';
-      document.getElementById("clock").innerHTML = tmp;
-      clocktime = setTimeout("time()", "1000", "Javascript");
+          var row = $('<tr>' +
 
-      function checkTime(i) {
-        if (i < 10) {
-          i = "0" + i;
-        }
-        return i;
-      }
-    }
-    //In dữ liệu
-    var myApp = new function () {
-      this.printTable = function () {
-        var tab = document.getElementById('sampleTable');
-        var win = window.open('', '', 'height=700,width=700');
-        win.document.write(tab.outerHTML);
-        win.document.close();
-        win.print();
-      }
-    }
+            '<td id="name' + element.id + '">' + element.startLocation + '</td>' +
+            // '<td id="name' + element.id + '">' + element.id + '</td>' +
+            '<td id="email' + element.id + '">' + element.endLocation + '</td> ' +
+            '<td id="phone' + element.id + '">' + element.description + '</td> ' +
+            '<td id="departures' + element.id + '">' + depString + '</td> ' +
+            '<td id="destinations' + element.id + '">' + depString1 + '</td> ' +
+
+            '<td class="table-td-center"> ' +
+            '<a class="delete" type="button" title="Xóa"data-toggle="tooltip" onclick="myFunction(this)"><i class="fas fa-trash-alt"></i> ' +
+
+            ' <a   class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal" data-target="#ModalUP"><i class="fas fa-edit"></i></a>' +
+            '<a class="delete" title="Xóa" data-toggle="tooltip"><i  class="fa fa-trash-o" ' +
+            'aria-hidden="true"></i></a> ' +
+            '</td> ' +
+            '</tr>'
+          );
+          $("#table-trip").append(row)
+        });
+
+      }).catch(err => {
+        console.log(error);
+      })
+    })
+
+    // $(document).on("click", ".delete", function () {
+    //   $(this).parents("tr").remove();
+    //   swal("Thành Công!", "Bạn Đã Xóa Thành Công", "success");
+    //   $(".add-new").removeAttr("disabled");
+    // });
+
+    // const form = document.querySelector('form');
+    // form.addEventListener('submit', (event) => {
+    //   event.preventDefault();
+
+    //   const data = {
+    //     id: document.getElementById('id').value,
+    //     startLocation: document.getElementById('startLocation').value,
+    //     endLocation: document.getElementById('endLocation').value,
+    //     description: document.getElementById('description').value,
+    //     departures: [
+    //       {
+    //         address: document.getElementById('departureAddress').value,
+    //         departureTime: document.getElementById('departureTime').value,
+    //       },
+    //     ],
+    //     destinations: [
+    //       {
+    //         address: document.getElementById('destinationAddress').value,
+    //         arrivalTime: document.getElementById('arrivalTime').value,
+    //       },
+    //     ],
+    //   };
+
+    //   axios.put('https://localhost:7026/api/v1/route/update', data, {
+    //     headers: {
+    //       'Authorization': `Bearer ${token}`
+    //     }
+    //   })
+    //     .then(response => {
+    //       if (response.statusText === "") {
+    //         window.location.href = 'table-data-banned.html';
+    //       }
+    //       console.log(response.data);
+    //     })
+    //     .catch(error => {
+    //       console.error(error);
+    //     });
+    // });
+    // //Tìm kiếm
+    // function myFunction() {
+    //   var input, filter, table, tr, td, i, txtValue;
+    //   input = document.getElementById("myInput");
+    //   filter = input.value.toUpperCase();
+    //   table = document.getElementById("myTable");
+    //   tr = table.getElementsByTagName("tr");
+    //   for (i = 0; i < tr.length; i++) {
+    //     td = tr[i].getElementsByTagName("td")[0];
+    //     if (td) {
+    //       txtValue = td.textContent || td.innerText;
+    //       if (txtValue.toUpperCase().indexOf(filter) > -1) {
+    //         tr[i].style.display = "";
+    //       } else {
+    //         tr[i].style.display = "none";
+    //       }
+    //     }
+    //   }
+    // }
+    // //tooltip
+    // $(document).ready(function () {
+    //   $('[data-toggle="tooltip"]').tooltip();
+    // });
+    // //Thời Gian
+    // function time() {
+    //   var today = new Date();
+    //   var weekday = new Array(7);
+    //   weekday[0] = "Chủ Nhật";
+    //   weekday[1] = "Thứ Hai";
+    //   weekday[2] = "Thứ Ba";
+    //   weekday[3] = "Thứ Tư";
+    //   weekday[4] = "Thứ Năm";
+    //   weekday[5] = "Thứ Sáu";
+    //   weekday[6] = "Thứ Bảy";
+    //   var day = weekday[today.getDay()];
+    //   var dd = today.getDate();
+    //   var mm = today.getMonth() + 1;
+    //   var yyyy = today.getFullYear();
+    //   var h = today.getHours();
+    //   var m = today.getMinutes();
+    //   var s = today.getSeconds();
+    //   m = checkTime(m);
+    //   s = checkTime(s);
+    //   nowTime = h + " giờ " + m + " phút " + s + " giây";
+    //   if (dd < 10) {
+    //     dd = '0' + dd
+    //   }
+    //   if (mm < 10) {
+    //     mm = '0' + mm
+    //   }
+    //   today = day + ', ' + dd + '/' + mm + '/' + yyyy;
+    //   tmp = '<span class="date"> ' + today + ' - ' + nowTime +
+    //     '</span>';
+    //   document.getElementById("clock").innerHTML = tmp;
+    //   clocktime = setTimeout("time()", "1000", "Javascript");
+
+    //   function checkTime(i) {
+    //     if (i < 10) {
+    //       i = "0" + i;
+    //     }
+    //     return i;
+    //   }
+    // }
+    // //In dữ liệu
+    // var myApp = new function () {
+    //   this.printTable = function () {
+    //     var tab = document.getElementById('sampleTable');
+    //     var win = window.open('', '', 'height=700,width=700');
+    //     win.document.write(tab.outerHTML);
+    //     win.document.close();
+    //     win.print();
+    //   }
+    // }
     //     //Sao chép dữ liệu
     //     var copyTextareaBtn = document.querySelector('.js-textareacopybtn');
 
@@ -302,9 +473,10 @@
 
 
     //Modal
-    $("#show-emp").on("click", function () {
-      $("#ModalUP").modal({ backdrop: false, keyboard: false })
-    });
+    // $("#show-emp").on("click", function () {
+    //   $("#ModalUP").modal({ backdrop: false, keyboard: false })
+    // });
   </script>
-  </body>
+</body>
+
 </html>
