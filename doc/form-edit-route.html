@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Danh sách đơn hàng | Quản trị Admin</title>
+  <title>Chỉnh sửa tuyến đường | Quản trị Admin</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -50,16 +50,17 @@
     <hr>
     <ul class="app-menu">
 
-      <li class="link-staff"><a class="app-menu__item " href="index.html"><i class='app-menu__icon bx bx-tachometer'></i><span
-            class="app-menu__label">Bảng điều khiển</span></a></li>
-      <li class="link-staff"><a class="app-menu__item " href="table-data-table.html"><i class='app-menu__icon bx bx-id-card'></i>
+      <li class="link-staff"><a class="app-menu__item " href="index.html"><i
+            class='app-menu__icon bx bx-tachometer'></i><span class="app-menu__label">Bảng điều khiển</span></a></li>
+      <li class="link-staff"><a class="app-menu__item " href="table-data-table.html"><i
+            class='app-menu__icon bx bx-id-card'></i>
           <span class="app-menu__label">Quản lý nhân viên</span></a></li>
 
       <li><a class="app-menu__item" href="table-data-product.html"><i
             class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý xe</span></a>
       </li>
-      <li class="link-staff"><a class="app-menu__item" href="table-data-oder.html"><i class='app-menu__icon bx bx-task'></i><span
-            class="app-menu__label">Quản lý nhà xe</span></a></li>
+      <li class="link-staff"><a class="app-menu__item" href="table-data-oder.html"><i
+            class='app-menu__icon bx bx-task'></i><span class="app-menu__label">Quản lý nhà xe</span></a></li>
       <li><a class="app-menu__item  active" href="table-data-banned.html"><i class='app-menu__icon bx bx-run'></i><span
             class="app-menu__label">Quản lý tuyến đường
           </span></a></li>
@@ -74,26 +75,30 @@
   <main class="app-content">
     <div class="app-title">
       <ul class="app-breadcrumb breadcrumb">
-        <li class="breadcrumb-item">Quản lý nội bộ</li>
-        <li class="breadcrumb-item"><a href="#">Tạo mới</a></li>
+        <li class="breadcrumb-item">Quản lý tuyến đường</li>
+        <li class="breadcrumb-item"><a href="#">Chỉnh sửa</a></li>
       </ul>
     </div>
     <div class="row">
       <div class="col-md-12">
         <div class="tile">
-          <h3 class="tile-title">Tạo mới danh sách tuyến đường</h3>
+          <h3 class="tile-title">Chỉnh sửa danh sách tuyến đường</h3>
           <div class="tile-body">
             <div class="row element-button">
 
 
             </div>
             <div class="row">
+              <div class="form-group col-md-12">
+                <label class="control-label">ID</label>
+                <input disabled class="form-control route-id" type="text" id="startLocation" name="startLocation">
+              </div>
               <div class="form-group col-md-4">
-                <label class="control-label">Tuyến đường xuất phát</label>
+                <label class="control-label">Nơi xuất phát</label>
                 <input class="form-control start-loc" type="text" id="startLocation" name="startLocation">
               </div>
               <div class="form-group col-md-4">
-                <label class="control-label">Tuyến đường đến</label>
+                <label class="control-label">Nơi đến</label>
                 <input class="form-control end-loc" type="text" id="endLocation" name="endLocation">
               </div>
               <div class="form-group col-md-4">
@@ -116,9 +121,6 @@
                 <label class="control-label">Điểm trả</label>
                 <div class="drop-off-container"></div>
               </div>
-
-
-
               <div class="tile-footer">
               </div>
             </div>
@@ -141,17 +143,75 @@
 
     $(document).ready(function () {
       var role = localStorage.getItem('role');
-      if(role != "admin"){
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      const id = urlParams.get('id');
+
+      if (role != "admin") {
         $(".link-staff").hide()
       }
-      addPickUp();
-      addDropOff();
+      //addPickUp();
+      //addDropOff();
 
+      var tripUrl = "https://localhost:44305/api/v1/route/get-route-by-id?id=" + id;
+
+      fetch(tripUrl).then(res => res.json()).then(res => {
+
+        $(".route-id").val(res.id);
+        $(".start-loc").val(res.startLocation)
+        $(".end-loc").val(res.endLocation)
+        $(".route-des").val(res.description)
+
+        res.departures.forEach(dep => {
+          typeCount += 1;
+          $(".pick-up-container").append(
+            '<div id="pick' + typeCount + '"  class="type-seat" style="border:1px solid black; margin: 10px; padding: 10px;border-radius:10px">' +
+
+            '<div class="form-group  col-md-12">' +
+            '<label class="control-label">Địa điểm</label>' +
+            '<input class="form-control pick-up" value="'+dep.address+'" type="text" name="seatUnit">' +
+            '</div>' +
+
+            '<div class="form-group  col-md-8">' +
+            '<label class="control-label">Thời gian </label>' +
+            '<input value="'+dep.departureTime.slice(0,19)+'" class="form-control dep-time" type="datetime-local" name="seatUnit">' +
+            '</div>' +
+
+            '<div class="form-group  col-md-8">' +
+            '<button class="btn btn-danger" onclick=removePickUp("' + typeCount + '")>Xóa</button>' +
+            '</div>' +
+            '</div>'
+          );
+        });
+
+        res.destinations.forEach(des => {
+          dropCount += 1;
+          $(".drop-off-container").append(
+            '<div id="drop' + dropCount + '"  class="off-list" style="border:1px solid black; margin: 10px; padding: 10px;border-radius:10px">' +
+
+            '<div class="form-group  col-md-12">' +
+            '<label class="control-label">Địa điểm</label>' +
+            '<input value="'+des.address+'" class="form-control drop-address" type="text" name="seatUnit">' +
+            '</div>' +
+
+            '<div class="form-group  col-md-8">' +
+            '<label class="control-label">Thời gian </label>' +
+            '<input value="'+des.arrivalTime.slice(0,19)+'" class="form-control arrival-time" type="datetime-local" name="seatUnit">' +
+            '</div>' +
+
+            '<div class="form-group  col-md-8">' +
+            '<button class="btn btn-danger" onclick=removeDropOff("' + dropCount + '")>Xóa</button>' +
+            '</div>' +
+            '</div>'
+          );
+        });
+      })
 
       $(".btn-save").on("click", function () {
-        const apiRouteUrl = "https://localhost:44305/api/v1/route/insert";
+        const apiRouteUrl = "https://localhost:44305/api/v1/route/update";
         var picks = $(".pick-up-container").children().toArray();
         var startLoc = $(".start-loc").val();
+        var id = $(".route-id").val();
         //var images = $(".imgs").val();
 
         var drops = $(".drop-off-container").children().toArray();
@@ -193,6 +253,7 @@
 
         //console.log(seatTypes);
         var route = {
+          id: id,
           startLocation: startLoc,
           endLocation: endLoc,
           description: des,
@@ -203,7 +264,7 @@
 
         fetch(apiRouteUrl,
           {
-            method: 'POST',
+            method: 'PUT',
             headers: {
               'Accept': 'application/json',
               'Content-Type': 'application/json',
@@ -214,11 +275,16 @@
           .then(response => response.json())
           .then(response => {
             console.log(response);
-            alert("Thêm tuyến đường thành công");
-            window.location.href = 'table-data-banned.html';
+            if(response==true){
+              swal("Thành công","Chỉnh sửa tuyến đường thành công","success");
+              setTimeout(function () { window.location.href = 'table-data-banned.html'; }, 2000);
+            } 
+            else{
+              swal("Thất bại","Chỉnh sửa tuyến đường thất bại","error");
+            }
           })
           .catch(err => {
-            console.log(err);
+            swal("Thất bại","Chỉnh sửa tuyến đường thất bại","error");
           })
       })
     });

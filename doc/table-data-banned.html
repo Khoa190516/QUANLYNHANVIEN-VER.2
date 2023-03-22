@@ -48,15 +48,15 @@
     <hr>
     <ul class="app-menu">
 
-      <li><a class="app-menu__item " href="index.html"><i class='app-menu__icon bx bx-tachometer'></i><span
+      <li class="link-staff"><a class="app-menu__item " href="index.html"><i class='app-menu__icon bx bx-tachometer'></i><span
             class="app-menu__label">Bảng điều khiển</span></a></li>
-      <li><a class="app-menu__item " href="table-data-table.html"><i class='app-menu__icon bx bx-id-card'></i>
+      <li class="link-staff"><a class="app-menu__item " href="table-data-table.html"><i class='app-menu__icon bx bx-id-card'></i>
           <span class="app-menu__label">Quản lý nhân viên</span></a></li>
 
       <li><a class="app-menu__item" href="table-data-product.html"><i
             class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý xe</span></a>
       </li>
-      <li><a class="app-menu__item " href="table-data-oder.html"><i class='app-menu__icon bx bx-task'></i><span
+      <li class="link-staff"><a class="app-menu__item " href="table-data-oder.html"><i class='app-menu__icon bx bx-task'></i><span
             class="app-menu__label">Quản lý nhà xe</span></a></li>
       <li><a class="app-menu__item active" href="table-data-banned.html"><i class='app-menu__icon bx bx-run'></i><span
             class="app-menu__label">Quản lý tuyến đường
@@ -72,7 +72,7 @@
   <main class="app-content">
     <div class="app-title">
       <ul class="app-breadcrumb breadcrumb side">
-        <li class="breadcrumb-item active"><a href="#"><b>Quản lý nội bộ</b></a></li>
+        <li class="breadcrumb-item active"><a href="#"><b>Quản lý tuyến đường</b></a></li>
       </ul>
       <div id="clock"></div>
     </div>
@@ -102,8 +102,8 @@
               </div>
             </div>
             <p class="timkiemnhanvien"><b>TÌM KIẾM TUYẾN ĐƯỜNG:</b></p><Br><Br>
-            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Nhập tuyến đường...">
-            <i class="fa fa-search" aria-hidden="true"></i>
+            <input style="margin-bottom: 10px;" type="text" id="myInput" onkeyup="myFunction()" placeholder="Nhập tuyến đường...">
+            <!-- <i class="fa fa-search" aria-hidden="true"></i> -->
             <table class="table table-hover table-bordered" id="myTable">
               <thead>
                 <tr>
@@ -112,51 +112,12 @@
                   <th>Điểm đến</th>
                   <th>Nhà xe</th>
                   <th>Điểm đón</th>
-                  <th>Địa trả</th>
+                  <th>Điểm trả</th>
                   <th>Chức năng</th>
                 </tr>
               </thead>
               <tbody id="table-trip">
-                <!--<tr>
-                    <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                    <td>Kiều Thái Anh</td>
-                    <td>10/09/1998</td>
-                    <td>Thu Ngân</td>
-                    <td>Gian lận trong công việc đã lấy trộm tiền của công ty và thái độ không ăn năn hối lỗi</td>
-                    <td><span class="badge bg-danger">Sa thải</span></td>
-                    <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"><i class="fas fa-trash-alt"></i></button>
-                      <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fa fa-edit"></i></button></td>
-                  </tr>
-                  <tr>
-                    <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                    <td>Nguyễn Thị Kim Yến</td>
-                    <td>02/12/1999</td>
-                    <td>Thu Ngân</td>
-                    <td>Gian lận trong công việc đã lấy trộm tiền của công ty và thái độ không ăn năn hối lỗi</td>
-                    <td><span class="badge bg-danger">Sa thải</span></td>
-                    <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"><i class="fas fa-trash-alt"></i></button>
-                      <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fa fa-edit"></i></button></td>
-                  </tr>
-                  <tr>
-                    <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                    <td>Nguyễn Hoàng Thái Nhật</td>                
-                    <td>07/02/1996</td>
-                    <td>Quản kho</td>
-                    <td>Tự ý thay đổi thông tin nhân viên và không báo cáo quản lý</td>
-                    <td><span class="badge bg-warning">Khóa tài khoản</span></td>
-                    <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"><i class="fas fa-trash-alt"></i></button>
-                      <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fa fa-edit"></i></button></td>
-                  </tr>
-                  <tr>
-                    <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                    <td>Võ Thành Nam</td>
-                    <td>19/09/1999</td>
-                    <td>Dịch vụ</td>
-                    <td>Phá hỏng 9 sản phẩm của công ty, có kháng cự khi bị bắt (bồi thường 125.000.000 đ)</td>
-                    <td><span class="badge bg-danger">Sa thải</span></td>
-                    <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"><i class="fas fa-trash-alt"></i></button>
-                      <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fa fa-edit"></i></button></td>
-                  </tr>-->
+                
               </tbody>
             </table>
           </div>
@@ -241,47 +202,20 @@
   <script type="text/javascript" src="js/plugins/dataTables.bootstrap.min.js"></script>
   <script type="text/javascript">$('#sampleTable').DataTable();</script>
   <script>
-    // function deleteRow(r) {
-    //   var i = r.parentNode.parentNode.rowIndex;
-    //   document.getElementById("myTable").deleteRow(i);
-    // }
-    // jQuery(function () {
-    //   jQuery(".trash").click(function () {
-    //     swal({
-    //       title: "Cảnh báo",
-
-    //       text: "Bạn có chắc chắn là muốn xóa?",
-    //       buttons: ["Hủy bỏ", "Đồng ý"],
-    //     })
-    //       .then((willDelete) => {
-    //         if (willDelete) {
-    //           swal("Đã xóa thành công.!", {
-
-    //           });
-    //         }
-    //       });
-    //   });
-    // });
-    // oTable = $('#sampleTable').dataTable();
-    // $('#all').click(function (e) {
-    //   $('#sampleTable tbody :checkbox').prop('checked', $(this).is(':checked'));
-    //   e.stopImmediatePropagation();
-    // });
-
-    //EXCEL
-    // $(document).ready(function () {
-    //   $('#').DataTable({
-
-    //     dom: 'Bfrtip',
-    //     "buttons": [
-    //       'excel'
-    //     ]
-    //   });
-    // });
-    //xóa
     const token = localStorage.getItem('token');
-    console.log(token);
+
+    function edit(id){
+      var query = new URLSearchParams();
+      query.append("id",id);
+      window.location = '/doc/form-edit-route.html?'+query.toString();
+    }
+    
     $(document).ready(function () {
+      var role = localStorage.getItem('role');
+            if(role != "admin"){
+                $(".link-staff").hide();
+            }
+
       var tripUrl = "https://localhost:44305/api/v1/route";
       fetch(tripUrl).then(response => {
         return response.json();
@@ -310,7 +244,6 @@
           console.log(depList);
           console.log(depList1);
 
-
           var row = $('<tr>' +
 
             '<td id="name' + element.id + '">' + element.startLocation + '</td>' +
@@ -321,11 +254,11 @@
             '<td id="destinations' + element.id + '">' + depString1 + '</td> ' +
 
             '<td class="table-td-center"> ' +
-            '<a class="delete" type="button" title="Xóa"data-toggle="tooltip" onclick="myFunction(this)"><i class="fas fa-trash-alt"></i> ' +
+            
+            '<button class="edit-btn btn btn-info" onclick=edit("' + element.id + '")><i class="fas fa-edit"></i> Sửa</button>' +
 
-            ' <a   class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal" data-target="#ModalUP"><i class="fas fa-edit"></i></a>' +
-            '<a class="delete" title="Xóa" data-toggle="tooltip"><i  class="fa fa-trash-o" ' +
-            'aria-hidden="true"></i></a> ' +
+            // '<a class="delete" title="Xóa" data-toggle="tooltip"><i  class="fa fa-trash-o" ' +
+            // 'aria-hidden="true"></i></a> ' +
             '</td> ' +
             '</tr>'
           );
@@ -337,145 +270,24 @@
       })
     })
 
-    // $(document).on("click", ".delete", function () {
-    //   $(this).parents("tr").remove();
-    //   swal("Thành Công!", "Bạn Đã Xóa Thành Công", "success");
-    //   $(".add-new").removeAttr("disabled");
-    // });
-
-    // const form = document.querySelector('form');
-    // form.addEventListener('submit', (event) => {
-    //   event.preventDefault();
-
-    //   const data = {
-    //     id: document.getElementById('id').value,
-    //     startLocation: document.getElementById('startLocation').value,
-    //     endLocation: document.getElementById('endLocation').value,
-    //     description: document.getElementById('description').value,
-    //     departures: [
-    //       {
-    //         address: document.getElementById('departureAddress').value,
-    //         departureTime: document.getElementById('departureTime').value,
-    //       },
-    //     ],
-    //     destinations: [
-    //       {
-    //         address: document.getElementById('destinationAddress').value,
-    //         arrivalTime: document.getElementById('arrivalTime').value,
-    //       },
-    //     ],
-    //   };
-
-    //   axios.put('https://localhost:7026/api/v1/route/update', data, {
-    //     headers: {
-    //       'Authorization': `Bearer ${token}`
-    //     }
-    //   })
-    //     .then(response => {
-    //       if (response.statusText === "") {
-    //         window.location.href = 'table-data-banned.html';
-    //       }
-    //       console.log(response.data);
-    //     })
-    //     .catch(error => {
-    //       console.error(error);
-    //     });
-    // });
-    // //Tìm kiếm
-    // function myFunction() {
-    //   var input, filter, table, tr, td, i, txtValue;
-    //   input = document.getElementById("myInput");
-    //   filter = input.value.toUpperCase();
-    //   table = document.getElementById("myTable");
-    //   tr = table.getElementsByTagName("tr");
-    //   for (i = 0; i < tr.length; i++) {
-    //     td = tr[i].getElementsByTagName("td")[0];
-    //     if (td) {
-    //       txtValue = td.textContent || td.innerText;
-    //       if (txtValue.toUpperCase().indexOf(filter) > -1) {
-    //         tr[i].style.display = "";
-    //       } else {
-    //         tr[i].style.display = "none";
-    //       }
-    //     }
-    //   }
-    // }
-    // //tooltip
-    // $(document).ready(function () {
-    //   $('[data-toggle="tooltip"]').tooltip();
-    // });
-    // //Thời Gian
-    // function time() {
-    //   var today = new Date();
-    //   var weekday = new Array(7);
-    //   weekday[0] = "Chủ Nhật";
-    //   weekday[1] = "Thứ Hai";
-    //   weekday[2] = "Thứ Ba";
-    //   weekday[3] = "Thứ Tư";
-    //   weekday[4] = "Thứ Năm";
-    //   weekday[5] = "Thứ Sáu";
-    //   weekday[6] = "Thứ Bảy";
-    //   var day = weekday[today.getDay()];
-    //   var dd = today.getDate();
-    //   var mm = today.getMonth() + 1;
-    //   var yyyy = today.getFullYear();
-    //   var h = today.getHours();
-    //   var m = today.getMinutes();
-    //   var s = today.getSeconds();
-    //   m = checkTime(m);
-    //   s = checkTime(s);
-    //   nowTime = h + " giờ " + m + " phút " + s + " giây";
-    //   if (dd < 10) {
-    //     dd = '0' + dd
-    //   }
-    //   if (mm < 10) {
-    //     mm = '0' + mm
-    //   }
-    //   today = day + ', ' + dd + '/' + mm + '/' + yyyy;
-    //   tmp = '<span class="date"> ' + today + ' - ' + nowTime +
-    //     '</span>';
-    //   document.getElementById("clock").innerHTML = tmp;
-    //   clocktime = setTimeout("time()", "1000", "Javascript");
-
-    //   function checkTime(i) {
-    //     if (i < 10) {
-    //       i = "0" + i;
-    //     }
-    //     return i;
-    //   }
-    // }
-    // //In dữ liệu
-    // var myApp = new function () {
-    //   this.printTable = function () {
-    //     var tab = document.getElementById('sampleTable');
-    //     var win = window.open('', '', 'height=700,width=700');
-    //     win.document.write(tab.outerHTML);
-    //     win.document.close();
-    //     win.print();
-    //   }
-    // }
-    //     //Sao chép dữ liệu
-    //     var copyTextareaBtn = document.querySelector('.js-textareacopybtn');
-
-    // copyTextareaBtn.addEventListener('click', function(event) {
-    //   var copyTextarea = document.querySelector('.js-copytextarea');
-    //   copyTextarea.focus();
-    //   copyTextarea.select();
-
-    //   try {
-    //     var successful = document.execCommand('copy');
-    //     var msg = successful ? 'successful' : 'unsuccessful';
-    //     console.log('Copying text command was ' + msg);
-    //   } catch (err) {
-    //     console.log('Oops, unable to copy');
-    //   }
-    // });
-
-
-    //Modal
-    // $("#show-emp").on("click", function () {
-    //   $("#ModalUP").modal({ backdrop: false, keyboard: false })
-    // });
+    function myFunction() {
+      // var input, filter, table, tr, td, i, txtValue;
+      // input = document.getElementById("myInput");
+      // filter = input.value.toUpperCase();
+      // table = document.getElementById("myTable");
+      // tr = table.getElementsByTagName("tr");
+      // for (i = 0; i < tr.length; i++) {
+      //   td = tr[i].getElementsByTagName("td")[0];
+      //   if (td) {
+      //     txtValue = td.textContent || td.innerText;
+      //     if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      //       tr[i].style.display = "";
+      //     } else {
+      //       tr[i].style.display = "none";
+      //     }
+      //   }
+      // }
+    }
   </script>
 </body>
 

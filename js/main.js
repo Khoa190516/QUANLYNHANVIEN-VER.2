@@ -4,16 +4,39 @@
 function login() {
   var password = document.getElementById("password-field").value;
   var otp = $("#otp").text();
+  var token = localStorage.getItem('token');
 
   if (password == otp) {
     swal({
       title: "",
-      text: "Xin chào Minh",
+      text: "Xin chào",
       icon: "success",
       close: true,
       button: false,
     });
-    window.location = "doc/index.html";
+
+    var profileUrl = 'https://localhost:44305/api/v1/accounts/profile';
+
+    fetch(profileUrl,{
+      headers:{
+        "Authorization" : "Bearer "+token,
+      }
+    }).then(response => response.json()).then(
+      response => {
+        var role = response.role;
+        //alert(role)
+        localStorage.setItem('role', role);
+        swal("Đăng nhập thành công","Đang chuyển hướng...","success");
+
+        var redirect = "doc/quan-ly-bao-cao.html";
+
+        if(role=="admin"){
+          redirect = "doc/table-data-table.html"
+        }
+
+        setTimeout(function () { window.location = redirect; }, 2000);
+      }
+    )
     return true;
   }
 }
@@ -34,7 +57,7 @@ function validate() {
   //     return true;
   //   }
   // }
-
+  $("#loading").show();
   fetch(loginUrl, {
     method: 'POST',
     headers: {
@@ -55,12 +78,8 @@ function validate() {
       console.log(otp);
       console.log(token);
       $("#otp").text(otp);
-      swal({
-        title: "Thông báo",
-
-        text: "Đã gửi mã OTP đến email,\n hãy nhập mã OTP để đăng nhập",
-        buttons: ["Hủy bỏ", "Đồng ý"],
-      })
+      // swal("Đã gửi mã xác thực đến email","Hãy nhập mã xác thực để đăng nhập","success");
+      $("#loading").hide();
       $(".email-login-form").hide();
       $(".email-login-form").text = "";
       $(".otp-form").show();

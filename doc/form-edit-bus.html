@@ -190,16 +190,20 @@
   <main class="app-content">
     <div class="app-title">
       <ul class="app-breadcrumb breadcrumb">
-        <li class="breadcrumb-item">Danh sách sản phẩm</li>
-        <li class="breadcrumb-item"><a href="#">Thêm sản phẩm</a></li>
+        <li class="breadcrumb-item">Danh sách xe</li>
+        <li class="breadcrumb-item"><a href="#">Chỉnh sửa thông tin xe</a></li>
       </ul>
     </div>
     <div class="row">
       <div class="col-md-12">
         <div class="tile">
-          <h3 class="tile-title">Tạo mới xe</h3>
+          <h3 class="tile-title">Chỉnh sửa thông tin xe</h3>
           <div class="row">
             <div class="tile-body form-group col-md-12">
+              <div class="form-group col-md-6">
+                <label class="control-label">ID </label>
+                <input disabled class="form-control bus-id" type="text" name="licensePlate" placeholder="">
+              </div>
               <div class="form-group col-md-6">
                 <label class="control-label">Biển số xe </label>
                 <input class="form-control license-lb" type="text" name="licensePlate" placeholder="">
@@ -220,12 +224,12 @@
               </div>
 
               <div class="form-group col-md-4">
-                <button class="btn-add-type btn btn-save" onclick="addSeatType()">Thêm loại ghế</button>
+                <button disabled class="btn-add-type btn btn-save" onclick="addSeatType()">Thêm loại ghế</button>
               </div>
               <div class="seat-type-container"></div>
             </div>
             <div class="form-group col-md-12">
-              <button class="btn btn-save btn-save-bus">Lưu lại</button>
+              <button class="btn btn-save">Lưu lại</button>
               <a class="btn btn-cancel" href="table-data-product.html">Hủy bỏ</a>
             </div>
           </div>
@@ -238,7 +242,7 @@
     var typeCount = 0;
     var imageBase64 = "";
     console.log(token);
-    const apiBusUrl = "https://localhost:44305/api/v1/bus/insert";
+    const apiBusUrl = "https://localhost:44305/api/v1/bus/update";
 
     $(document).ready(function () {
       $("#loading").hide();
@@ -246,8 +250,56 @@
       if (role != "admin") {
         $(".link-staff").hide()
       }
-      addSeatType();
+      //addSeatType();
+      //Get data
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      const id = urlParams.get('id');
 
+      var busUrl = "https://localhost:44305/api/v1/bus/get-by-id?busId=" + id;
+      fetch(busUrl).then(res => res.json()).then(res => {
+        //alert(res.licensePlate)
+        $(".bus-id").val(res.id)
+        $(".license-lb").val(res.licensePlate)
+        $("#img-show").css("background-image", 'url(' + res.images + ')')
+        res.seatTypes.forEach(element => {
+          typeCount += 1;
+          $(".seat-type-container").append(
+            '<div id="type' + typeCount + '"  class="type-seat" style="border:1px solid black; margin: 10px; padding: 10px;border-radius:10px">' +
+
+            '<div class="form-group  col-md-12">' +
+            '<label class="control-label">ID </label>' +
+            '<input disabled class="form-control type-id" value="' + element.id + '" type="text" name="seatUnit">' +
+            '</div>' +
+
+            '<div class="form-group  col-md-12">' +
+            '<label class="control-label">Loại ghế </label>' +
+            '<input class="form-control loai-ghe" value="' + element.seatTypeName + '" type="text" name="seatUnit">' +
+            '</div>' +
+
+            '<div class="form-group  col-md-8">' +
+            '<label class="control-label">Kí hiệu </label>' +
+            '<input class="form-control ki-hieu" type="text" value="' + element.sign + '" name="seatUnit">' +
+            '</div>' +
+
+            '<div class="form-group  col-md-6" >' +
+            '<label class="control-label">Số lượng ghế </label>' +
+            '<input disabled value="' + element.totatSeats + '" class="form-control so-ghe" type="text" name="seatUnit">' +
+            '</div>' +
+
+            '<div class="form-group  col-md-3">' +
+            '<label class="control-label">Giá vé </label>' +
+            '<input value="' + element.price.toLocaleString() + ' VND" class="form-control gia-ve" type="text" name="seatUnit">' +
+
+            '</div>' +
+            '<div class="form-group  col-md-8">' +
+            '<button disabled class="btn btn-danger" onclick=removeSeatType("' + typeCount + '")>Xóa loại ghế</button>' +
+            '</div>' +
+            '</div>'
+          );
+        });
+      })
+      //-----------------------------------------
       $('#bus-image').on('change', function (e) {
         e.preventDefault();
         const reader = new FileReader();
@@ -287,16 +339,18 @@
           });
       });
 
-      $(".btn-save-bus").on("click", function () {
+      $(".btn-save").on("click", function () {
         //alert($(".license-lb").val());
         var divs = $(".seat-type-container").children().toArray();
         var license = $(".license-lb").val();
+        var busId = $(".bus-id").val();
         var images = $(".imgs").val();
         var isValidate = true;
         console.log(license + " " + images);
         var seatTypes = [];
         divs.forEach(div => {
           console.log(div.id);
+          var typeId = $("#" + div.id).find($(".type-id")).val();
           var type = $("#" + div.id).find($(".loai-ghe")).val();
           var sign = $("#" + div.id).find($(".ki-hieu")).val();
           var unit = $("#" + div.id).find($(".so-ghe")).val();
@@ -305,21 +359,6 @@
           priceNum = priceNum.replace(",","");
           priceNum = priceNum.trim();
           var isNumber = /^\d+$/.test(priceNum);
-
-          var unitNum = unit.replace(" VND","");
-          unitNum = unitNum.replace(",","");
-          unitNum = unitNum.trim();
-          var isNumber2 = /^\d+$/.test(unitNum);
-
-          if(isNumber2 == false){
-            isValidate = false;
-            swal("Lỗi","Số lượng ghế không hợp lệ","error");
-          }
-
-          if(parseFloat(unitNum)<=0){
-            swal("Lỗi số lượng","Số ghế lớn hơn 0","error");
-            isValidate=false;
-          }
 
           if(isNumber == false){
             isValidate = false;
@@ -330,27 +369,28 @@
             swal("Lỗi giá vé","Giá vé lớn hơn 0","error");
             isValidate=false;
           }
+
           console.log(type + " " + sign + " " + unit);
           var typeAdd = {
+            id: typeId,
             seatTypeName: type,
             seatName: sign,
-            unit: unit,
-            price: price
+            price: priceNum
           };
           seatTypes.push(typeAdd);
         });
         console.log(seatTypes);
         var bus = {
+          id: busId,
           licensePlate: license,
           images: imageBase64,
           seatTypes: seatTypes,
         }
         console.log(JSON.stringify(bus));
-
         if(isValidate==true){
           fetch(apiBusUrl,
           {
-            method: 'POST',
+            method: 'PUT',
             headers: {
               'Accept': 'application/json',
               'Content-Type': 'application/json',
@@ -361,8 +401,8 @@
           .then(response => response.json())
           .then(response => {
             console.log(response);
-            swal("Thành công","Thêm xe thành công","success");
-            window.location.href = 'table-data-product.html';
+            swal("Thành công", "Thêm xe thành công", "success");
+            setTimeout(function () { window.location.href = 'table-data-product.html'; }, 2000);
           })
           .catch(err => {
             console.log(err);

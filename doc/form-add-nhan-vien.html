@@ -18,46 +18,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
-  <script>
-
-    function readURL(input, thumbimage) {
-      if (input.files && input.files[0]) { //Sử dụng  cho Firefox - chrome
-        var reader = new FileReader();
-        reader.onload = function (e) {
-          $("#thumbimage").attr('src', e.target.result);
-        }
-        reader.readAsDataURL(input.files[0]);
-      }
-      else { // Sử dụng cho IE
-        $("#thumbimage").attr('src', input.value);
-
-      }
-      $("#thumbimage").show();
-      $('.filename').text($("#uploadfile").val());
-      $('.Choicefile').css('background', '#14142B');
-      $('.Choicefile').css('cursor', 'default');
-      $(".removeimg").show();
-      $(".Choicefile").unbind('click');
-
-    }
-    $(document).ready(function () {
-      $(".Choicefile").bind('click', function () {
-        $("#uploadfile").click();
-
-      });
-      $(".removeimg").click(function () {
-        $("#thumbimage").attr('src', '').hide();
-        $("#myfileupload").html('<input type="file" id="uploadfile"  onchange="readURL(this);" />');
-        $(".removeimg").hide();
-        $(".Choicefile").bind('click', function () {
-          $("#uploadfile").click();
-        });
-        $('.Choicefile').css('background', '#14142B');
-        $('.Choicefile').css('cursor', 'pointer');
-        $(".filename").text("");
-      });
-    })
-  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 </head>
 
 <body class="app sidebar-mini rtl">
@@ -137,11 +98,8 @@
       aria-label="Hide Sidebar"></a>
     <!-- Navbar Right Menu-->
     <ul class="app-nav">
-
-
       <!-- User Menu-->
       <li><a class="app-nav__item" href="/index.html"><i class='bx bx-log-out bx-rotate-180'></i> </a>
-
       </li>
     </ul>
   </header>
@@ -157,137 +115,109 @@
     <hr>
     <ul class="app-menu">
 
-      <li><a class="app-menu__item " href="index.html"><i class='app-menu__icon bx bx-tachometer'></i><span
-            class="app-menu__label">Bảng điều khiển</span></a></li>
+      <!-- <li><a class="app-menu__item " href="index.html"><i class='app-menu__icon bx bx-tachometer'></i><span
+            class="app-menu__label">Bảng điều khiển</span></a></li> -->
       <li><a class="app-menu__item active" href="table-data-table.html"><i class='app-menu__icon bx bx-id-card'></i>
-          <span class="app-menu__label">Quản lý nhân viên</span></a></li>
-   
-      <li><a class="app-menu__item" href="table-data-product.html"><i
+          <span class="app-menu__label">Quản lý tài khoản</span></a></li>
+
+      <!-- <li><a class="app-menu__item" href="table-data-product.html"><i
             class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý xe</span></a>
-      </li>
+      </li> -->
       <li><a class="app-menu__item" href="table-data-oder.html"><i class='app-menu__icon bx bx-task'></i><span
             class="app-menu__label">Quản lý nhà xe</span></a></li>
-      <li><a class="app-menu__item" href="table-data-banned.html"><i class='app-menu__icon bx bx-run'></i><span
-            class="app-menu__label">Quản lý tuyến đường
-          </span></a></li>
-      <li><a class="app-menu__item" href="table-data-money.html"><i class='app-menu__icon bx bx-dollar'></i><span
-            class="app-menu__label">Quản lý chuyến đi</span></a></li>
-      <li><a class="app-menu__item" href="quan-ly-bao-cao.html"><i
-            class='app-menu__icon bx bx-pie-chart-alt-2'></i><span class="app-menu__label">Báo cáo doanh thu</span></a>
-      </li>
-   
     </ul>
   </aside>
   <main class="app-content">
     <div class="app-title">
       <ul class="app-breadcrumb breadcrumb">
-        <li class="breadcrumb-item">Danh sách nhân viên</li>
-        <li class="breadcrumb-item"><a href="#">Thêm nhân viên</a></li>
+        <li class="breadcrumb-item">Danh sách tài khoản</li>
+        <li class="breadcrumb-item"><a href="#">Thêm tài khoản</a></li>
       </ul>
     </div>
     <div class="row">
       <div class="col-md-12">
-        <form onsubmit=" return add(this)">
-        <div class="tile">
-          
-          <h3 class="tile-title">Tạo mới nhân viên</h3>
-          <div class="tile-body">
-            <div class="row element-button">
-              <div class="col-sm-2">
-           
-              </div>
+        <form class="form">
+          <div class="tile">
+            <h3 class="tile-title">Tạo mới tài khoản</h3>
+            <div class="tile-body">
+              <form class="row">
+                <div class="form-group col-md-4">
+                  <label class="control-label">Họ và tên</label>
+                  <input class="form-control name-txt" type="text" name="username" required>
+                </div>
+                <div class="form-group col-md-4">
+                  <label class="control-label">Địa chỉ email</label>
+                  <input class="form-control email-txt" type="text" name="email" required>
+                </div>
+                <div class="form-group col-md-4">
+                  <label class="control-label">Địa chỉ thường trú</label>
+                  <input class="form-control address-txt" type="text" name="address" required>
+                </div>
+                <div class="form-group  col-md-4">
+                  <label class="control-label">Số điện thoại</label>
+                  <input class="form-control phone-txt" type="phone" name="phone" required>
+                </div>
+                <div class="form-group  col-md-3">
+                  <label for="role-select" class="control-label">Chức vụ</label>
+                  <select class="form-control" id="role-select" name="roleName">
+                    <option value="0">Admin</option>
+                    <option value="1">Nhà xe</option>
+                    <option value="2">Khách hàng</option>
+                  </select>
+                </div>
 
+                <button class="btn btn-save btn-account-save">Lưu lại</button>
+                <a class="btn btn-cancel" href="/doc/table-data-table.html">Hủy bỏ</a>
             </div>
-            <form class="row">
-              <div class="form-group col-md-4">
-                <label class="control-label">ID nhân viên</label>
-                <input class="form-control" type="text">
-              </div>
-              <div class="form-group col-md-4">
-                <label class="control-label">Họ và tên</label>
-                <input class="form-control" type="text" name="username" required>
-              </div>
-              <div class="form-group col-md-4">
-                <label class="control-label">Địa chỉ email</label>
-                <input class="form-control" type="text" name="email"  required>
-              </div>
-              <div class="form-group col-md-4">
-                <label class="control-label">Địa chỉ thường trú</label>
-                <input class="form-control" type="text" name="address" required>
-              </div>
-              <div class="form-group  col-md-4">
-                <label class="control-label">Số điện thoại</label>
-                <input class="form-control" type="number" name="phone" required>
-              </div>
-           
-           
-              
-             
-             
-                 
-              </div>
-
-              <div class="form-group  col-md-3">
-                <label for="exampleSelect1" class="control-label">Chức vụ</label>
-                <select class="form-control" id="exampleSelect1"  name="roleName">
-                  <option>-- Chọn chức vụ --</option>
-                  <option>Admin</option>
-                  <option>custommer</option>
-                
-                </select>
-              </div>
-            
-           
-
-              
-
-
-
-          
-          <button class="btn btn-save"  type="submit" >Lưu lại</button>
-          <a class="btn btn-cancel" href="/doc/table-data-table.html">Hủy bỏ</a>
-        </div>
+          </div>
         </form>
-        </div>
-
+      </div>
   </main>
 
+  <script>
+    const apiUrl = "https://localhost:44305/api/v1/accounts/sign-up";
+    const token = localStorage.getItem('token');
 
-  <!--
-  MODAL
--->
-  
-  <!--
-  MODAL
--->
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script>
-    const apiUrl="https://localhost:44305/api/v1/accounts/sign-up";
-    function add(el){
-     const username = document.querySelector('[name="username"]').value;
-     const address = document.querySelector('[name="address"]').value;
-     const email = document.querySelector('[name="email"]').value;
-     const phone = document.querySelector('[name="phone"]').value;
-     const roleName = document.querySelector('[name="roleName"]').value;
-     const requestObj ={
-        username:username,
-        address:address,
-        email:email,
-        phone:phone,
-        roleName:roleName
-     };
-     console.log(requestObj);
-     //gửi request lên api để add
-     axios.post(apiUrl,requestObj)
-     .then(data=>{
-        if(data.statusText ===""){
-            window.location.href='table-data-table.html';
-        }
-        console.log(data);
-     })
-        return false;
-    }
-</script>
+    $(document).ready(function () {
+
+      $(".btn-account-save").on('click', function () {
+        var email = $(".email-txt").val()
+        var phone = $(".phone-txt").val()
+        var address = $(".address-txt").val()
+        var name = $(".name-txt").val()
+        var roleId = $("#role-select option:selected").val();
+
+        var account = {
+          email: email,
+          username: name,
+          phone: phone,
+          address: address,
+          roleId: roleId
+        };
+
+        fetch(apiUrl,
+          {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+              'Authorization': "Bearer " + token
+            },
+            body: JSON.stringify(account)
+          })
+          .then(response => response.json())
+          .then(response => {
+            console.log(response);
+            swal("Thành công", "Thêm tài khoản thành công", "success");
+            setTimeout(function () { window.location.href = 'doc/table-data-table.html'; }, 2000);
+          })
+          .catch(err => {
+            console.log(err);
+            swal("Thất bại", "Thêm tài khoản thất bại", "error");
+          });
+      })
+    })
+  </script>
 
   <!-- Essential javascripts for application to work-->
   <script src="js/jquery-3.2.1.min.js"></script>
