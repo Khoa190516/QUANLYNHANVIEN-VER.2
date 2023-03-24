@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Danh sách đơn hàng | Quản trị Admin</title>
+  <title>Danh sách tuyến đường | Quản trị Admin</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -48,16 +48,16 @@
     <hr>
     <ul class="app-menu">
 
-      <li class="link-staff"><a class="app-menu__item " href="index.html"><i class='app-menu__icon bx bx-tachometer'></i><span
+      <!-- <li class="link-staff"><a class="app-menu__item " href="index.html"><i class='app-menu__icon bx bx-tachometer'></i><span
             class="app-menu__label">Bảng điều khiển</span></a></li>
       <li class="link-staff"><a class="app-menu__item " href="table-data-table.html"><i class='app-menu__icon bx bx-id-card'></i>
-          <span class="app-menu__label">Quản lý nhân viên</span></a></li>
+          <span class="app-menu__label">Quản lý nhân viên</span></a></li> -->
 
       <li><a class="app-menu__item" href="table-data-product.html"><i
             class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý xe</span></a>
       </li>
-      <li class="link-staff"><a class="app-menu__item " href="table-data-oder.html"><i class='app-menu__icon bx bx-task'></i><span
-            class="app-menu__label">Quản lý nhà xe</span></a></li>
+      <!-- <li class="link-staff"><a class="app-menu__item " href="table-data-oder.html"><i class='app-menu__icon bx bx-task'></i><span
+            class="app-menu__label">Quản lý nhà xe</span></a></li> -->
       <li><a class="app-menu__item active" href="table-data-banned.html"><i class='app-menu__icon bx bx-run'></i><span
             class="app-menu__label">Quản lý tuyến đường
           </span></a></li>
@@ -108,7 +108,7 @@
               <thead>
                 <tr>
                   <th>Địa điểm khởi hành</th>
-                  <!-- <th>Mã tuyến đường</th> -->
+                  <th>Ngày tạo</th>
                   <th>Điểm đến</th>
                   <th>Nhà xe</th>
                   <th>Điểm đón</th>
@@ -211,10 +211,10 @@
     }
     
     $(document).ready(function () {
-      var role = localStorage.getItem('role');
-            if(role != "admin"){
-                $(".link-staff").hide();
-            }
+      // var role = localStorage.getItem('role');
+      //       if(role != "admin"){
+      //           $(".link-staff").hide();
+      //       }
 
       var tripUrl = "https://localhost:44305/api/v1/route";
       fetch(tripUrl).then(response => {
@@ -247,7 +247,7 @@
           var row = $('<tr>' +
 
             '<td id="name' + element.id + '">' + element.startLocation + '</td>' +
-            // '<td id="name' + element.id + '">' + element.id + '</td>' +
+            '<td id="name' + element.id + '">' + element.createdDate + '</td>' +
             '<td id="email' + element.id + '">' + element.endLocation + '</td> ' +
             '<td id="phone' + element.id + '">' + element.description + '</td> ' +
             '<td id="departures' + element.id + '">' + depString + '</td> ' +
@@ -264,7 +264,7 @@
           );
           $("#table-trip").append(row)
         });
-
+        $("#myTable").DataTable()
       }).catch(err => {
         console.log(error);
       })

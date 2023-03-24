@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Danh sách nhân viên | Quản trị Admin</title>
+  <title>Danh sách xe | Quản trị Admin</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -48,17 +48,17 @@
     <hr>
     <ul class="app-menu">
 
-      <li class="link-staff"><a class="app-menu__item " href="index.html"><i
-            class='app-menu__icon bx bx-tachometer'></i><span class="app-menu__label">Bảng điều khiển</span></a></li>
-      <li class="link-staff"><a class="app-menu__item " href="table-data-table.html"><i
+      <!-- <li class="link-staff"><a class="app-menu__item " href="index.html"><i
+            class='app-menu__icon bx bx-tachometer'></i><span class="app-menu__label">Bảng điều khiển</span></a></li> -->
+      <!-- <li class="link-staff"><a class="app-menu__item " href="table-data-table.html"><i
             class='app-menu__icon bx bx-id-card'></i>
-          <span class="app-menu__label">Quản lý nhân viên</span></a></li>
+          <span class="app-menu__label">Quản lý nhân viên</span></a></li> -->
 
       <li><a class="app-menu__item active" href="table-data-product.html"><i
             class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý xe</span></a>
       </li>
-      <li class="link-staff"><a class="app-menu__item" href="table-data-oder.html"><i
-            class='app-menu__icon bx bx-task'></i><span class="app-menu__label">Quản lý nhà xe</span></a></li>
+      <!-- <li class="link-staff"><a class="app-menu__item" href="table-data-oder.html"><i
+            class='app-menu__icon bx bx-task'></i><span class="app-menu__label">Quản lý nhà xe</span></a></li> -->
       <li><a class="app-menu__item" href="table-data-banned.html"><i class='app-menu__icon bx bx-run'></i><span
             class="app-menu__label">Quản lý tuyến đường
           </span></a></li>
@@ -111,6 +111,7 @@
                 <tr>
                   <th>Biển số xe</th>
                   <th width="100">Ảnh</th>
+                  <th>Ngày tạo</th>
                   <th>Số ghế</th>
                   <th>Hiện có sẵn<nav></nav>
                   </th>
@@ -470,7 +471,7 @@ MODAL
   <script src="js/popper.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script src="src/jquery.table2excel.js"></script>
+  <!-- <script src="src/jquery.table2excel.js"></script> -->
   <script src="js/main.js"></script>
   <!-- The javascript plugin to display page loading on top-->
   <script src="js/plugins/pace.min.js"></script>
@@ -518,10 +519,10 @@ MODAL
     }
 
     $(document).ready(function () {
-      var role = localStorage.getItem('role');
-      if (role != "admin") {
-        $(".link-staff").hide();
-      }
+      // var role = localStorage.getItem('role');
+      // if (role != "admin") {
+      //   $(".link-staff").hide();
+      // }
 
       var busUrl = "https://localhost:44305/api/v1/bus/get-by-company";
       fetch(busUrl, {
@@ -550,6 +551,7 @@ MODAL
 
             '<td id="name' + element.id + '">' + element.licensePlate + '</td>' +
             '<td id="address' + element.id + '"><img width="100%" height="100%" src=' + element.images + '></td> ' +
+            '<td id="email' + element.id + '">' + element.createdDate + '</td> ' +
             '<td id="email' + element.id + '">' + element.seatUnit + '</td> ' +
             '<td id="phone' + element.id + '">' + isAvai + '</td> ' +
             '<td id="role' + element.id + '">' + element.seatsLeft + '</td> ' +
@@ -568,117 +570,117 @@ MODAL
           );
           $("#table-bus").append(row)
         });
-
+        $("#myTable").DataTable()
       }).catch(err => {
         console.log(err);
       })
     });
-      //   $('[data-toggle="tooltip"]').tooltip();
-      // });
+    //   $('[data-toggle="tooltip"]').tooltip();
+    // });
 
-      const apibusUrl = "https://localhost:44305/api/v1/bus/update";
-      function addbus(el) {
-        const id = document.querySelector('[name="id"]').value;
-        const licensePlate = document.querySelector('[name="licensePlate"]').value;
-        const images = document.querySelector('[name="images"]').value;
-        const seatUnit = document.querySelector('[name="seatUnit"]').value;
-        const isAvailable = document.querySelector('[name="isAvailable"]').value;
-        const description = document.querySelector('[name="description"]').value;
-        const requestObj = {
-          id: id,
-          licensePlate: licensePlate,
-          images: images,
-          seatUnit: seatUnit,
-          isAvailable: isAvailable,
-          description: description
-        };
-        console.log(requestObj);
+    const apibusUrl = "https://localhost:44305/api/v1/bus/update";
+    function addbus(el) {
+      const id = document.querySelector('[name="id"]').value;
+      const licensePlate = document.querySelector('[name="licensePlate"]').value;
+      const images = document.querySelector('[name="images"]').value;
+      const seatUnit = document.querySelector('[name="seatUnit"]').value;
+      const isAvailable = document.querySelector('[name="isAvailable"]').value;
+      const description = document.querySelector('[name="description"]').value;
+      const requestObj = {
+        id: id,
+        licensePlate: licensePlate,
+        images: images,
+        seatUnit: seatUnit,
+        isAvailable: isAvailable,
+        description: description
+      };
+      console.log(requestObj);
 
 
-        //gửi request lên api để add
-        axios.put(apibusUrl, requestObj, {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        }
-        )
-
-          .then(data => {
-            if (data.statusText === "") {
-              window.location.href = 'table-data-product.html';
-            }
-            console.log(data);
-            token = data.token;
-          })
-        return false;
-      }
-
-      function time() {
-        var today = new Date();
-        var weekday = new Array(7);
-        weekday[0] = "Chủ Nhật";
-        weekday[1] = "Thứ Hai";
-        weekday[2] = "Thứ Ba";
-        weekday[3] = "Thứ Tư";
-        weekday[4] = "Thứ Năm";
-        weekday[5] = "Thứ Sáu";
-        weekday[6] = "Thứ Bảy";
-        var day = weekday[today.getDay()];
-        var dd = today.getDate();
-        var mm = today.getMonth() + 1;
-        var yyyy = today.getFullYear();
-        var h = today.getHours();
-        var m = today.getMinutes();
-        var s = today.getSeconds();
-        m = checkTime(m);
-        s = checkTime(s);
-        nowTime = h + " giờ " + m + " phút " + s + " giây";
-        if (dd < 10) {
-          dd = '0' + dd
-        }
-        if (mm < 10) {
-          mm = '0' + mm
-        }
-        today = day + ', ' + dd + '/' + mm + '/' + yyyy;
-        tmp = '<span class="date"> ' + today + ' - ' + nowTime +
-          '</span>';
-        document.getElementById("clock").innerHTML = tmp;
-        clocktime = setTimeout("time()", "1000", "Javascript");
-
-        function checkTime(i) {
-          if (i < 10) {
-            i = "0" + i;
-          }
-          return i;
+      //gửi request lên api để add
+      axios.put(apibusUrl, requestObj, {
+        headers: {
+          'Authorization': `Bearer ${token}`
         }
       }
+      )
+
+        .then(data => {
+          if (data.statusText === "") {
+            window.location.href = 'table-data-product.html';
+          }
+          console.log(data);
+          token = data.token;
+        })
+      return false;
+    }
+
+    function time() {
+      var today = new Date();
+      var weekday = new Array(7);
+      weekday[0] = "Chủ Nhật";
+      weekday[1] = "Thứ Hai";
+      weekday[2] = "Thứ Ba";
+      weekday[3] = "Thứ Tư";
+      weekday[4] = "Thứ Năm";
+      weekday[5] = "Thứ Sáu";
+      weekday[6] = "Thứ Bảy";
+      var day = weekday[today.getDay()];
+      var dd = today.getDate();
+      var mm = today.getMonth() + 1;
+      var yyyy = today.getFullYear();
+      var h = today.getHours();
+      var m = today.getMinutes();
+      var s = today.getSeconds();
+      m = checkTime(m);
+      s = checkTime(s);
+      nowTime = h + " giờ " + m + " phút " + s + " giây";
+      if (dd < 10) {
+        dd = '0' + dd
+      }
+      if (mm < 10) {
+        mm = '0' + mm
+      }
+      today = day + ', ' + dd + '/' + mm + '/' + yyyy;
+      tmp = '<span class="date"> ' + today + ' - ' + nowTime +
+        '</span>';
+      document.getElementById("clock").innerHTML = tmp;
+      clocktime = setTimeout("time()", "1000", "Javascript");
+
+      function checkTime(i) {
+        if (i < 10) {
+          i = "0" + i;
+        }
+        return i;
+      }
+    }
   </script>
   <script>
-      function deleteRow(r) {
-        var i = r.parentNode.parentNode.rowIndex;
-        document.getElementById("myTable").deleteRow(i);
-      }
-      jQuery(function () {
-        jQuery(".trash").click(function () {
-          swal({
-            title: "Cảnh báo",
-            text: "Bạn có chắc chắn là muốn xóa sản phẩm này?",
-            buttons: ["Hủy bỏ", "Đồng ý"],
-          })
-            .then((willDelete) => {
-              if (willDelete) {
-                swal("Đã xóa thành công.!", {
+    function deleteRow(r) {
+      var i = r.parentNode.parentNode.rowIndex;
+      document.getElementById("myTable").deleteRow(i);
+    }
+    jQuery(function () {
+      jQuery(".trash").click(function () {
+        swal({
+          title: "Cảnh báo",
+          text: "Bạn có chắc chắn là muốn xóa sản phẩm này?",
+          buttons: ["Hủy bỏ", "Đồng ý"],
+        })
+          .then((willDelete) => {
+            if (willDelete) {
+              swal("Đã xóa thành công.!", {
 
-                });
-              }
-            });
-        });
+              });
+            }
+          });
       });
-      oTable = $('#sampleTable').dataTable();
-      $('#all').click(function (e) {
-        $('#sampleTable tbody :checkbox').prop('checked', $(this).is(':checked'));
-        e.stopImmediatePropagation();
-      });
+    });
+    oTable = $('#sampleTable').dataTable();
+    $('#all').click(function (e) {
+      $('#sampleTable tbody :checkbox').prop('checked', $(this).is(':checked'));
+      e.stopImmediatePropagation();
+    });
   </script>
 </body>
 

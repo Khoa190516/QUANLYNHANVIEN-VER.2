@@ -316,61 +316,64 @@
           'Accept': 'application/json',
           'Content-Type': 'application/json',
           'Authorization': "Bearer " + token
-        },body:JSON.stringify(model)
-      }).then(response => response.json()).then(response=>{
-        if(response==true){
-          swal("Thành công","Cập nhật thành công","success")
+        }, body: JSON.stringify(model)
+      }).then(response => response.json()).then(response => {
+        if (response == true) {
+          swal("Thành công", "Cập nhật thành công", "success")
           setTimeout(function () { window.location.reload(); }, 2000);
-        }else{
-          swal("Thất bại","Cập nhật thất bại","error")
+        } else {
+          swal("Thất bại", "Cập nhật thất bại", "error")
         }
       })
     }
 
-    fetch(busUrl, {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': "Bearer " + token
-      },
-    }).then(response => {
-      return response.json();
-    }).then(data => {
-      //alert(data.length);
-      console.log(data.length);
-      $("#table-busstation").empty();
-      data.forEach(element => {
-        var status = "Đang hoạt động";
-        var colorStatus = "text-success";
-        if (element.isActive == false) {
-          status = "Bị khóa"
-          colorStatus = "text-danger";
-        }
-        var row = $('<tr>' +
+    $(document).ready(function () {
+      fetch(busUrl, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': "Bearer " + token
+        },
+      }).then(response => {
+        return response.json();
+      }).then(data => {
+        //alert(data.length);
+        console.log(data.length);
+        $("#table-busstation").empty();
+        data.forEach(element => {
+          var status = "Đang hoạt động";
+          var colorStatus = "text-success";
+          if (element.isActive == false) {
+            status = "Bị khóa"
+            colorStatus = "text-danger";
+          }
+          var row = $('<tr>' +
 
-          '<td id="name' + element.id + '">' + element.username + '</td>' +
-          '<td id="name' + element.id + '">' + element.email + '</td>' +
-          '<td id="email' + element.id + '">' + element.phone + '</td> ' +
-          '<td id="email' + element.id + '">' + element.address + '</td> ' +
-          '<td class="' + colorStatus + '" id="phone' + element.id + '">' + status + '</td> ' +
+            '<td id="name' + element.id + '">' + element.username + '</td>' +
+            '<td id="name' + element.id + '">' + element.email + '</td>' +
+            '<td id="email' + element.id + '">' + element.phone + '</td> ' +
+            '<td id="email' + element.id + '">' + element.address + '</td> ' +
+            '<td class="' + colorStatus + '" id="phone' + element.id + '">' + status + '</td> ' +
 
-          '<td class="table-td-center"> ' +
-          // '<a class="delete" type="button" title="Xóa"data-toggle="tooltip" onclick="myFunction(this)"><i class="fas fa-trash-alt"></i> '+
+            '<td class="table-td-center"> ' +
+            // '<a class="delete" type="button" title="Xóa"data-toggle="tooltip" onclick="myFunction(this)"><i class="fas fa-trash-alt"></i> '+
 
-          // ' <a   class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal" data-target="#ModalUP"><i class="fas fa-edit"></i></a>'+
-          // '<a class="delete" title="Xóa" data-toggle="tooltip"><i  class="fa fa-trash-o" '+
-          //         'aria-hidden="true"></i></a> '+
-          '<button class="edit-btn btn btn-info" onclick=edit("' + element.id + '")><i class="fas fa-edit"></i> Thay đổi</button>' +
-          '</td> ' +
-          '</tr>'
-        );
-        $("#table-busstation").append(row)
-      });
-
-    }).catch(err => {
-      console.log(error);
+            // ' <a   class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal" data-target="#ModalUP"><i class="fas fa-edit"></i></a>'+
+            // '<a class="delete" title="Xóa" data-toggle="tooltip"><i  class="fa fa-trash-o" '+
+            //         'aria-hidden="true"></i></a> '+
+            '<button class="edit-btn btn btn-info" onclick=edit("' + element.id + '")><i class="fas fa-edit"></i> Thay đổi</button>' +
+            '</td> ' +
+            '</tr>'
+          );
+          $("#table-busstation").append(row)
+        });
+        $("#myTable").DataTable()
+      }).catch(err => {
+        console.log(error);
+      })
     })
+
     //Tìm kiếm
     function myFunction() {
       var input, filter, table, tr, td, i, txtValue;
