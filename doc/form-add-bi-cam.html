@@ -50,16 +50,17 @@
     <hr>
     <ul class="app-menu">
 
-      <li class="link-staff"><a class="app-menu__item " href="index.html"><i class='app-menu__icon bx bx-tachometer'></i><span
-            class="app-menu__label">Bảng điều khiển</span></a></li>
-      <li class="link-staff"><a class="app-menu__item " href="table-data-table.html"><i class='app-menu__icon bx bx-id-card'></i>
+      <li class="link-staff"><a class="app-menu__item " href="index.html"><i
+            class='app-menu__icon bx bx-tachometer'></i><span class="app-menu__label">Bảng điều khiển</span></a></li>
+      <li class="link-staff"><a class="app-menu__item " href="table-data-table.html"><i
+            class='app-menu__icon bx bx-id-card'></i>
           <span class="app-menu__label">Quản lý nhân viên</span></a></li>
 
       <li><a class="app-menu__item" href="table-data-product.html"><i
             class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý xe</span></a>
       </li>
-      <li class="link-staff"><a class="app-menu__item" href="table-data-oder.html"><i class='app-menu__icon bx bx-task'></i><span
-            class="app-menu__label">Quản lý nhà xe</span></a></li>
+      <li class="link-staff"><a class="app-menu__item" href="table-data-oder.html"><i
+            class='app-menu__icon bx bx-task'></i><span class="app-menu__label">Quản lý nhà xe</span></a></li>
       <li><a class="app-menu__item  active" href="table-data-banned.html"><i class='app-menu__icon bx bx-run'></i><span
             class="app-menu__label">Quản lý tuyến đường
           </span></a></li>
@@ -141,7 +142,7 @@
 
     $(document).ready(function () {
       var role = localStorage.getItem('role');
-      if(role != "admin"){
+      if (role != "admin") {
         $(".link-staff").hide()
       }
       addPickUp();
@@ -214,8 +215,8 @@
           .then(response => response.json())
           .then(response => {
             console.log(response);
-            alert("Thêm tuyến đường thành công");
-            window.location.href = 'table-data-banned.html';
+            swal("Thành công", "Thêm tuyến đường thành công", "success")
+            setTimeout(function () { window.location = "table-data-banned.html" }, 2000);
           })
           .catch(err => {
             console.log(err);
