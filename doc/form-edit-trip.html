@@ -243,6 +243,15 @@
         });
       }
 
+      var busId = $(".bus-select option:selected").val();
+      var imgSrc = "";
+      busList.forEach(element => {
+        if (element.id == busId) {
+          imgSrc = element.images;
+        }
+      });
+      $('#img-show').css("background-image", 'url(' + imgSrc + ')');
+
       var stationRes = await axios.get(stationUrl, {
         headers: {
           'Authorization': 'Bearer ' + token,
