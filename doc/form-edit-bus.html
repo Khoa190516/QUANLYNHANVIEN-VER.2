@@ -401,7 +401,7 @@
           .then(response => response.json())
           .then(response => {
             console.log(response);
-            swal("Thành công", "Thêm xe thành công", "success");
+            swal("Thành công", "Cập nhật xe thành công", "success");
             setTimeout(function () { window.location.href = 'table-data-product.html'; }, 2000);
           })
           .catch(err => {

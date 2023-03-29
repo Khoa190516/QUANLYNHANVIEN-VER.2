@@ -287,13 +287,57 @@
           });
       });
 
-      $(".btn-save-bus").on("click", function () {
+      $(".btn-save-bus").on("click", async function () {
         //alert($(".license-lb").val());
         var divs = $(".seat-type-container").children().toArray();
         var license = $(".license-lb").val();
         var images = $(".imgs").val();
         var isValidate = true;
         console.log(license + " " + images);
+        var isBusExist = false;
+
+        var busUrl = "https://localhost:44305/api/v1/bus/get-by-company";
+        // fetch(busUrl, {
+        //   method: 'GET',
+        //   headers: {
+        //     'Accept': 'application/json',
+        //     'Content-Type': 'application/json',
+        //     'Authorization': "Bearer " + token
+        //   },
+        // }).then(response => {
+        //   return response.json();
+        // }).then(data => {
+        //   data.forEach(element => {
+        //     if (element.licensePlate == license) {
+        //       swal("Lỗi", "Biển số xe đã tồn tại", "error")
+        //       isValidate = false;
+        //       isBusExist = true;
+        //     }
+        //   });
+        // })
+
+        //Check bus license plate is existed
+        var res = await axios.get(busUrl, {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': "Bearer " + token
+          },
+        });
+
+        if(res.status == 200){
+          res.data.forEach(element => {
+            if (element.licensePlate == license) {
+              swal("Lỗi", "Biển số xe đã tồn tại", "error")
+              isValidate = false;
+              isBusExist = true;
+            }
+          })
+        }
+
+        if (isBusExist == true) return;
+
         var seatTypes = [];
         divs.forEach(div => {
           console.log(div.id);
@@ -301,34 +345,34 @@
           var sign = $("#" + div.id).find($(".ki-hieu")).val();
           var unit = $("#" + div.id).find($(".so-ghe")).val();
           var price = $("#" + div.id).find($(".gia-ve")).val();
-          var priceNum = price.replace(" VND","");
-          priceNum = priceNum.replace(",","");
+          var priceNum = price.replace(" VND", "");
+          priceNum = priceNum.replace(",", "");
           priceNum = priceNum.trim();
           var isNumber = /^\d+$/.test(priceNum);
 
-          var unitNum = unit.replace(" VND","");
-          unitNum = unitNum.replace(",","");
+          var unitNum = unit.replace(" VND", "");
+          unitNum = unitNum.replace(",", "");
           unitNum = unitNum.trim();
           var isNumber2 = /^\d+$/.test(unitNum);
 
-          if(isNumber2 == false){
+          if (isNumber2 == false) {
             isValidate = false;
-            swal("Lỗi","Số lượng ghế không hợp lệ","error");
+            swal("Lỗi", "Số lượng ghế không hợp lệ", "error");
           }
 
-          if(parseFloat(unitNum)<=0){
-            swal("Lỗi số lượng","Số ghế lớn hơn 0","error");
-            isValidate=false;
-          }
-
-          if(isNumber == false){
+          if (parseFloat(unitNum) <= 0) {
+            swal("Lỗi số lượng", "Số ghế lớn hơn 0", "error");
             isValidate = false;
-            swal("Lỗi","Giá vé không hợp lệ","error");
           }
 
-          if(parseFloat(priceNum)<=0){
-            swal("Lỗi giá vé","Giá vé lớn hơn 0","error");
-            isValidate=false;
+          if (isNumber == false) {
+            isValidate = false;
+            swal("Lỗi", "Giá vé không hợp lệ", "error");
+          }
+
+          if (parseFloat(priceNum) <= 0) {
+            swal("Lỗi giá vé", "Giá vé lớn hơn 0", "error");
+            isValidate = false;
           }
           console.log(type + " " + sign + " " + unit);
           var typeAdd = {
@@ -347,27 +391,27 @@
         }
         console.log(JSON.stringify(bus));
 
-        if(isValidate==true){
+        if (isValidate == true) {
           fetch(apiBusUrl,
-          {
-            method: 'POST',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-              'Authorization': "Bearer " + token
-            },
-            body: JSON.stringify(bus)
-          })
-          .then(response => response.json())
-          .then(response => {
-            console.log(response);
-            swal("Thành công","Thêm xe thành công","success");
-            window.location.href = 'table-data-product.html';
-          })
-          .catch(err => {
-            console.log(err);
-          })
-        }    
+            {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + token
+              },
+              body: JSON.stringify(bus)
+            })
+            .then(response => response.json())
+            .then(response => {
+              console.log(response);
+              swal("Thành công", "Thêm xe thành công", "success");
+              window.location.href = 'table-data-product.html';
+            })
+            .catch(err => {
+              console.log(err);
+            })
+        }
       });
     });
 
