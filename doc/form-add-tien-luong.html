@@ -107,11 +107,42 @@
                 <label for="end-select" class="control-label"> Điểm đến </label>
                 <select class="form-select end-select" aria-label="Default select example"></select>
               </div>
+              <div class="form-group col-md-5" style="display: flex; justify-content: flex-end;">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  Thêm
+                </button>
+              </div>
               <div class="form-group">
                 <button onclick="saveTrip()" class="btn btn-success save-btn">Lưu lại</button>
                 <a class="btn btn-danger" href="table-data-money.html">Hủy bỏ</a>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Button trigger modal -->
+    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Launch demo modal
+    </button> -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header text-body">
+            <h5 class="modal-title" id="exampleModalLabel">Thêm địa điểm</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" style="display: flex;justify-content: center;">
+            <div class="form-group col-md-12">
+              <label class="control-label">Địa điểm</label>
+              <input class="form-control bus-station-add-txt" type="text" name="busStationAddTxt" placeholder="">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+            <button type="button" class="btn btn-success btn-add-bus-station">Lưu lại</button>
           </div>
         </div>
       </div>
@@ -139,6 +170,39 @@
 
         $('#img-show').css("background-image", 'url(' + imgSrc + ')');
       })
+
+      $(".btn-add-bus-station").on("click", function () {
+        var station = $(".bus-station-add-txt").val();
+        var token = localStorage.getItem('token');
+        //alert(station);
+        if (station != "" && station != undefined && station != null) {
+          var addStationUrl = "https://localhost:44305/api/v1/bus-station/insert";
+
+          var addStationModel = {
+            address: station
+          }
+
+          fetch(addStationUrl,
+            {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + token
+              },
+              body: JSON.stringify(addStationModel)
+            })
+            .then(response => response.json())
+            .then(response => {
+              console.log(response);
+              swal("Thành công", "Thêm địa điểm thành công", "success")
+              setTimeout(function () { window.location.reload() }, 2000);
+            })
+            .catch(err => {
+              swal("Lỗi", "Thêm địa điểm thất bại", "error")
+            })
+        }
+      });
     })
 
     function saveTrip() {
@@ -227,6 +291,16 @@
           }
         });
       }
+
+      var busId = $(".bus-select option:selected").val();
+      var imgSrc = "";
+      busList.forEach(element => {
+        if (element.id == busId) {
+          imgSrc = element.images;
+        }
+      });
+
+      $('#img-show').css("background-image", 'url(' + imgSrc + ')');
 
       var stationRes = await axios.get(stationUrl, {
         headers: {
