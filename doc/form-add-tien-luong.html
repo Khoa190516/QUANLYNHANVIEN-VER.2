@@ -171,7 +171,7 @@
         $('#img-show').css("background-image", 'url(' + imgSrc + ')');
       })
 
-      $(".btn-add-bus-station").on("click", function () {
+      $(".btn-add-bus-station").on("click", async function () {
         var station = $(".bus-station-add-txt").val();
         var token = localStorage.getItem('token');
         //alert(station);
@@ -182,25 +182,67 @@
             address: station
           }
 
-          fetch(addStationUrl,
+          // fetch(addStationUrl,
+          //   {
+          //     method: 'POST',
+          //     headers: {
+          //       'Accept': 'application/json',
+          //       'Content-Type': 'application/json',
+          //       'Authorization': "Bearer " + token
+          //     },
+          //     body: JSON.stringify(addStationModel)
+          //   })
+          //   .then(response => response.json())
+          //   .then(response => {
+          //     console.log(response);
+          //     swal("Thành công", "Thêm địa điểm thành công", "success")
+          //     setTimeout(function () { window.location.reload() }, 2000);
+          //   })
+          //   .catch(err => {
+          //     swal("Lỗi", "Thêm địa điểm thất bại", "error")
+          //   })
+          var res = await axios.post(addStationUrl, addStationModel,
             {
-              method: 'POST',
+              //method: 'POST',
               headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 'Authorization': "Bearer " + token
-              },
-              body: JSON.stringify(addStationModel)
-            })
-            .then(response => response.json())
-            .then(response => {
-              console.log(response);
-              swal("Thành công", "Thêm địa điểm thành công", "success")
-              setTimeout(function () { window.location.reload() }, 2000);
-            })
-            .catch(err => {
-              swal("Lỗi", "Thêm địa điểm thất bại", "error")
-            })
+              }
+            });
+
+          if (res.status == 200) {
+            swal("Thành công", "Thêm địa điểm thành công", "success")
+            // setTimeout(function () { $("#exampleModal").modal('toggle'); }, 2000);
+            $("#exampleModal").modal('toggle');
+
+            const stationUrl = "https://localhost:44305/api/v1/bus-station/get-by-company";
+            var stationRes = await axios.get(stationUrl, {
+              headers: {
+                'Authorization': 'Bearer ' + token,
+              }
+            });
+
+            if (stationRes.status == 200) {
+              var stations = stationRes.data;
+              console.log(stations);
+
+              $(".start-select").empty();
+              $(".end-select").empty();
+
+              stations.forEach(element2 => {
+                $(".start-select").append($('<option>', {
+                  value: element2.id,
+                  text: element2.address.toUpperCase()
+                }));
+
+                $(".end-select").append($('<option>', {
+                  value: element2.id,
+                  text: element2.address.toUpperCase()
+                }));
+              });
+            }
+          }
         }
       });
     })
